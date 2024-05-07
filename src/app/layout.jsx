@@ -19,7 +19,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${poppins.variable}`}>{children}</body>
+      <body className={`${inter.variable} ${poppins.variable}`}>
+      <main>{children}</main>
+      </body>
     </html>
   );
 }
