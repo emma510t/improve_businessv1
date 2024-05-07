@@ -1,4 +1,5 @@
-### HEJ! Dette er et skole projekt :D - Mere specefikt er det et eksamensprojekt til 4. semester på KEA c:
+### HEJ! Dette er et skole projekt :D - Mere specifikt er det et eksamensprojekt til 4. semester på KEA c:
+
 
 ## Fra Next:
 
