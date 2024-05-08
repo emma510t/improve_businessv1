@@ -22,6 +22,25 @@ module.exports = {
         poppins: ["var(--font-poppins)"],
       },
       colors: {
+        ibgreen: {
+          200: "#87FFD4",
+          400: "#35E0A2",
+          600: "#2C624F",
+        },
+        ibblue: {
+          400: "#4FA0FF",
+        },
+        ibred: {
+          400: "#F25454",
+        },
+        ibsilver: {
+          100: "#FAF8FF",
+          200: "#D9D5E2",
+          300: "#A8A6AD",
+          400: "#64626E",
+          500: "#292634",
+          600: "#1F1D27",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
