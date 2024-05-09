@@ -1,0 +1,26 @@
+export default function EmployeeCard({ type, company }) {
+  return (
+    <article
+      className={`bg-${
+        type === "advisory" ? "ibblue" : "ibgreen"
+      }-400 min-w-[304px] min-h-[406px] relative`}
+    >
+      <div
+        className="absolute bg-contain bg-bottom bg-no-repeat	top-0 right-0 left-0 bottom-0"
+        style={{ backgroundImage: "url('/img/employees/anna.webp')" }}
+      >
+        <div className="font-inter w-full h-full flex flex-col justify-end py-3 px-5 bg-gradient-to-t from-darkoverlay via-transparent via-transparent to-transparent">
+          <h4 className="font-bold text-ibsilver-100 text-xl">Anna Hørsted</h4>
+          <p className="text-ibsilver-100 font-medium text-lg opacity-75">
+            CEO & Founder
+          </p>
+          {type === "advisory" ? (
+            <p className="text-ibsilver-100 font-medium text-lg opacity-75">
+              {company}
+            </p>
+          ) : null}
+        </div>
+      </div>
+    </article>
+  );
+}

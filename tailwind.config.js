@@ -22,6 +22,7 @@ module.exports = {
         poppins: ["var(--font-poppins)"],
       },
       colors: {
+        darkoverlay: "rgba(41, 38, 52, .72)",
         ibgreen: {
           200: "#87FFD4",
           400: "#35E0A2",
