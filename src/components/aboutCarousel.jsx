@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
-import EmployeeCard from "./employeeCard";
+import EmployeeCard from "./ui/employeeCard";
 import {
   Carousel,
   CarouselContent,

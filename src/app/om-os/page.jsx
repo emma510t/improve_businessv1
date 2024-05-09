@@ -1,4 +1,4 @@
-import AboutCarousel from "@/components/ui/aboutCarousel";
+import AboutCarousel from "@/components/aboutCarousel";
 
 export default function omOs() {
   return (
