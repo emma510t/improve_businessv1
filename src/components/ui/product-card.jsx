@@ -4,6 +4,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import Icon from "./icon";
+import Link from "next/link";
 
 const cardVariants = cva("flex flex-col gap-5 min-h-48 p-5 lg:min-h-56", {
   variants: {
@@ -22,16 +23,18 @@ const cardVariants = cva("flex flex-col gap-5 min-h-48 p-5 lg:min-h-56", {
   },
 });
 
-const ProductCard = React.forwardRef(({ className, desc, heading, icon, variant, size, asChild = false, ...props }, ref) => {
+const ProductCard = React.forwardRef(({ className, desc, heading, icon, url, variant, size, asChild = false, ...props }, ref) => {
   const Comp = asChild ? Slot : "div";
-  let hasDesc = desc === null ? false : true;
+  let hasDesc = desc ? true : false;
   return (
-    <Comp className={cn(cardVariants({ variant, size, className }))} ref={ref} {...props}>
-      <Icon iconVersion={icon} />
-      <h4 className="text-xl font-bold lg:text-2xl">{heading}</h4>
-      {hasDesc && <p className="text-sm font-normal lg:text-base">{desc}</p>}
-      <ArrowRight className="ml-auto mt-auto h-5 w-5 transition-transform transform translate-x-0 group-hover:translate-x-1" />
-    </Comp>
+    <Link href={`/consulting/${url}`}>
+      <Comp className={cn(cardVariants({ variant, size, className }))} ref={ref} {...props}>
+        <Icon iconVersion={icon} />
+        <h4 className="text-xl font-bold lg:text-2xl">{heading}</h4>
+        {hasDesc && <p className="text-sm font-normal lg:text-base">{desc}</p>}
+        <ArrowRight className="ml-auto mt-auto h-5 w-5 transition-transform transform translate-x-0 group-hover:translate-x-1" />
+      </Comp>
+    </Link>
   );
 });
 ProductCard.displayName = "Card";

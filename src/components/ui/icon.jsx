@@ -106,7 +106,7 @@ const Icon = ({ iconVersion }) => {
         <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" fill="none" className="stroke-ibgreen-400 group-hover:stroke-ibsilver-500">
           <g clipPath="url(#clip0_498_3908)">
             <path d="M2.3335 8.66699H45.6668" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.6665 8.66699H41.3332V36.8337H6.6665V8.66699Z" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+            <path fillRule="evenodd" clipRule="evenodd" d="M6.6665 8.66699H41.3332V36.8337H6.6665V8.66699Z" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M31.5835 19.5L34.8335 22.75L31.5835 26" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M16.4165 26L13.1665 22.75L16.4165 19.5" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M15.3335 45.4997L24.0002 36.833L32.6668 45.4997" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
@@ -305,8 +305,8 @@ const Icon = ({ iconVersion }) => {
       return (
         <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" fill="none" className="fill-ibgreen-400 group-hover:fill-ibsilver-500">
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M19 6.75L10.5 2L2 6.75V16.25L10.5 21L19 16.25V6.75ZM10.5 14.6667C12.3069 14.6667 13.7717 13.2489 13.7717 11.5C13.7717 9.7511 12.3069 8.33333 10.5 8.33333C8.69312 8.33333 7.22835 9.7511 7.22835 11.5C7.22835 13.2489 8.69312 14.6667 10.5 14.6667Z"
           />
           <path d="M18.65 24.2C16.945 24.2 15.55 25.595 15.55 27.3C15.55 29.005 16.945 30.4 18.65 30.4C20.355 30.4 21.75 29.0205 21.75 27.3C21.75 25.5795 20.3705 24.2 18.65 24.2ZM29.5 21.1C27.795 21.1 26.4 22.4795 26.4 24.2C26.4 25.9205 27.795 27.3 29.5 27.3C31.205 27.3 32.6 25.9205 32.6 24.2C32.6 22.4795 31.2205 21.1 29.5 21.1ZM40.35 18C38.645 18 37.25 19.395 37.25 21.1C37.25 22.805 38.645 24.2 40.35 24.2C42.055 24.2 43.45 22.8205 43.45 21.1C43.45 19.3795 42.0705 18 40.35 18ZM16.325 31.95C15.0385 31.95 14 32.9885 14 34.275V41.25H15.55V49H21.75V41.25H23.3V34.275C23.3 32.9885 22.2615 31.95 20.975 31.95H16.325ZM27.175 28.85C25.8885 28.85 24.85 29.8885 24.85 31.175V38.15H26.4V45.9H32.6V38.15H34.15V31.175C34.15 29.8885 33.1115 28.85 31.825 28.85H27.175ZM38.025 25.75C36.7385 25.75 35.7 26.7885 35.7 28.075V35.05H37.25V42.8H43.45V35.05H45V28.075C45 26.7885 43.9615 25.75 42.675 25.75H38.025Z" />

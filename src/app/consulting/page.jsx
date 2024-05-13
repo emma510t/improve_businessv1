@@ -19,7 +19,7 @@ export default async function consulting() {
       <h1>consulting</h1>
       <div className="flex gap-2 flex-wrap">
         {cards.map((card) => {
-          return <ProductCard key={card.url} heading={card.title} icon={card.icon}></ProductCard>;
+          return <ProductCard key={card.url} heading={card.title} icon={card.icon} url={card.url}></ProductCard>;
         })}
       </div>
     </>
