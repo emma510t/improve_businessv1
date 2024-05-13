@@ -12,7 +12,7 @@ function Header() {
         </Link>
         <MainNav></MainNav>
       </nav>
-      <nav className="flex justify-between flex-wrap gap-4 bg-ibsilver-600 px-10 py-11">
+      <nav className="hidden flex justify-between flex-wrap gap-4 bg-ibsilver-600 px-10 py-11">
         <div className="flex flex-col gap-8">
           <p className="font-poppins text-lg">
             <MenuItem linkref="/">Innovation og Skalering</MenuItem>
