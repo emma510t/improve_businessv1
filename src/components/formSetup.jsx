@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "./ui/textarea";
 import { createClient } from "@supabase/supabase-js";
 import CheckboxTile from "./ui/checkboxtile";
+import sendgrid from "@sendgrid/mail";
 
 const supabase = createClient(
   "https://qxxsilydcykxsgfvfvvz.supabase.co",
@@ -56,7 +57,6 @@ export default function FormSetup() {
 
   const [submitting, setSubmitting] = useState(false);
 
-  const sgMail = require("@sendgrid/mail");
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
   const onSubmit = async (data) => {
