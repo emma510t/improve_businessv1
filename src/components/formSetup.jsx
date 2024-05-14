@@ -56,6 +56,9 @@ export default function FormSetup() {
 
   const [submitting, setSubmitting] = useState(false);
 
+  const sgMail = require("@sendgrid/mail");
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
   const onSubmit = async (data) => {
     try {
       setSubmitting(true); // Set submitting state to true
@@ -65,23 +68,37 @@ export default function FormSetup() {
         .from("ib-contact-form")
         .insert([
           {
-            // Map form data to your table columns
             name: data.name,
             email: data.email,
             phone: data.phone,
             description: data.description,
-            area: Object.keys(checkedItems)
-              .filter((key) => checkedItems[key])
+            area: Object.keys(data.checkedItems)
+              .filter((key) => data.checkedItems[key])
               .join(", "),
-            // Add other columns as needed
           },
         ]);
 
       if (error) {
         throw error;
       }
+
+      // Prepare the email message
+      const msg = {
+        to: data.email, // Send the email to the user who filled the form
+        from: "emil00y1@stud.kea.dk", // Make sure this is a verified sender email in SendGrid
+        subject: "Confirmation of Data Submission",
+        text: `Hello ${data.name}, thank you for your submission. We have received your details.`,
+        html: `<strong>Hello ${data.name},</strong><p>Thank you for your submission. We have received the following details:</p><ul><li>Email: ${data.email}</li><li>Phone: ${data.phone}</li><li>Description: ${data.description}</li><li>Interest Areas: ${data.area}</li></ul>`,
+      };
+
+      // Send the email
+      await sgMail.send(msg);
+      console.log("Email sent");
     } catch (error) {
-      console.error("Error submitting form data:", error.message);
+      console.error(
+        "Error submitting form data or sending email:",
+        error.message
+      );
     } finally {
       setSubmitting(false); // Reset submitting state
     }
