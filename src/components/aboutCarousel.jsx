@@ -43,7 +43,10 @@ export default function AboutCarousel({ type }) {
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {filteredEmployees.map((employee) => (
-            <CarouselItem className="md:basis-1/2 lg:basis-1/3 pl-2 md:pl-4">
+            <CarouselItem
+              className="md:basis-1/2 lg:basis-1/3 pl-2 md:pl-4"
+              key={employee.id}
+            >
               <EmployeeCard
                 fullname={employee.fullname}
                 title={employee.title}

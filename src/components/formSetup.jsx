@@ -1,130 +1,153 @@
 "use client";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { Form } from "./ui/form";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import { Checkbox } from "./ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "./ui/textarea";
+import { createClient } from "@supabase/supabase-js";
+import CheckboxTile from "./ui/checkboxtile";
+
+const supabase = createClient(
+  "https://qxxsilydcykxsgfvfvvz.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4eHNpbHlkY3lreHNnZnZmdnZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTY4NTE1MTIsImV4cCI6MjAxMjQyNzUxMn0.XhVtrw5oL-uS_xjTWDhjvePBXTWqN5qrevhCh9XjUSQ"
+);
+
+const areas = [
+  {
+    name: "Innovation og skalering",
+    key: "innovation",
+  },
+  {
+    name: "Dokumentation",
+    key: "dokumentation",
+  },
+  {
+    name: "Forretningsudvikling",
+    key: "forretningsudvikling",
+  },
+  {
+    name: "Kommunikation",
+    key: "kommunikation",
+  },
+  {
+    name: "Forandring",
+    key: "forandring",
+  },
+  {
+    name: "Andet",
+    key: "andet",
+  },
+];
 
 export default function FormSetup() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const [checkedItems, setCheckedItems] = useState({});
+
+  const handleCheckboxChange = (key, isChecked) => {
+    setCheckedItems({ ...checkedItems, [key]: isChecked });
+  };
+
+  const [submitting, setSubmitting] = useState(false);
+
+  const onSubmit = async (data) => {
+    try {
+      setSubmitting(true); // Set submitting state to true
+
+      // Send form data to SupaBase
+      const { data: formData, error } = await supabase
+        .from("ib-contact-form")
+        .insert([
+          {
+            // Map form data to your table columns
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            description: data.description,
+            area: Object.keys(checkedItems)
+              .filter((key) => checkedItems[key])
+              .join(", "),
+            // Add other columns as needed
+          },
+        ]);
+
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      console.error("Error submitting form data:", error.message);
+    } finally {
+      setSubmitting(false); // Reset submitting state
+    }
+  };
 
   return (
     <>
       <Form>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <fieldset className="flex gap-4">
-            <legend>hvad kan vi hjælpe dig med?</legend>
-            <div className="flex items-center space-x-2">
-              <Checkbox id="innovation" {...register("check-innovation")} />
-              <label
-                htmlFor="innovation"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Innovation og skalering
-              </label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="dokumentation"
-                {...register("check-dokumentation")}
-              />
-              <label
-                htmlFor="dokumentation"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Dokumentation
-              </label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="forretningsudvikling"
-                {...register("check-forretningsudvikling")}
-              />
-              <label
-                htmlFor="forretningsudvikling"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Forretningsudvikling
-              </label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox id="forandring" {...register("check-forandring")} />
-              <label
-                htmlFor="forandring"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Forandring
-              </label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="kommunikation"
-                {...register("check-kommunikation")}
-              />
-              <label
-                htmlFor="kommunikation"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Kommunikation
-              </label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox id="andet" {...register("check-andet")} />
-              <label
-                htmlFor="andet"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Andet
-              </label>
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+          <fieldset>
+            <legend>Hvad kan vi hjælpe dig med?</legend>
+            <div className="flex gap-3 mt-4">
+              {areas.map((area) => (
+                <CheckboxTile
+                  {...register(area.name)}
+                  key={area.key}
+                  checked={checkedItems[area.key] || false}
+                  onChange={(isChecked) =>
+                    handleCheckboxChange(area.key, isChecked)
+                  }
+                >
+                  {area.name}
+                </CheckboxTile>
+              ))}
             </div>
           </fieldset>
-          <div>
-            <Label htmlFor="name">Navn*</Label>
-            <Input
-              id="name"
-              {...register("name", { required: true })}
-              aria-invalid={errors.name ? "true" : "false"}
-            />
-            {errors.name?.type === "required" && (
-              <p role="alert">Indtast navn</p>
-            )}
-          </div>
-          <div>
-            <Label htmlFor="email">E-mail*</Label>
-            <Input
-              id="email"
-              type="email"
-              {...register("email", { required: true })}
-              aria-invalid={errors.email ? "true" : "false"}
-            />
-            {errors.email?.type === "required" && (
-              <p role="alert">Indtast korrekt e-mail</p>
-            )}
-          </div>
-          <div>
-            <Label htmlFor="phone">Telefonnummer*</Label>
-            <Input
-              id="phone"
-              type="tel"
-              {...register("phone", {
-                required: "Telefonnummer er påkrævet",
-                minLength: {
-                  value: 8,
-                  message: "Telefonnummeret skal være mindst 8 tegn",
-                },
-              })}
-              aria-invalid={errors.phone ? "true" : "false"}
-            />
-            {errors.phone && <p role="alert">{errors.phone.message}</p>}
+          <div className="flex gap-2.5">
+            <div>
+              <Label htmlFor="name">Navn*</Label>
+              <Input
+                id="name"
+                {...register("name", { required: true })}
+                aria-invalid={errors.name ? "true" : "false"}
+              />
+              {errors.name?.type === "required" && (
+                <p role="alert">Indtast navn</p>
+              )}
+            </div>
+            <div>
+              <Label htmlFor="email">E-mail*</Label>
+              <Input
+                id="email"
+                type="email"
+                {...register("email", { required: true })}
+                aria-invalid={errors.email ? "true" : "false"}
+              />
+              {errors.email?.type === "required" && (
+                <p role="alert">Indtast korrekt e-mail</p>
+              )}
+            </div>
+            <div>
+              <Label htmlFor="phone">Telefonnummer*</Label>
+              <Input
+                id="phone"
+                type="tel"
+                {...register("phone", {
+                  required: "Telefonnummer er påkrævet",
+                  minLength: {
+                    value: 8,
+                    message: "Telefonnummeret skal være mindst 8 tegn",
+                  },
+                })}
+                aria-invalid={errors.phone ? "true" : "false"}
+              />
+              {errors.phone && <p role="alert">{errors.phone.message}</p>}
+            </div>
           </div>
           <div>
             <Label htmlFor="description">Besked*</Label>
@@ -147,7 +170,11 @@ export default function FormSetup() {
             )}
           </div>
           {/* {errors.name && <span>This field is required</span>} */}
-          <Button type="submit">Send</Button>
+          <div>
+            <Button type="submit" disabled={submitting}>
+              {submitting ? "Sender..." : "Send"}
+            </Button>
+          </div>
         </form>
       </Form>
     </>
