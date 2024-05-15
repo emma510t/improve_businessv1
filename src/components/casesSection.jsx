@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { supabase } from "../lib/supabaseclient";
+import { supabase } from "@/lib/supabaseclient";
 import CaseCards from "./ui/caseCards";
 
 export default function CasesSection() {
@@ -22,7 +22,8 @@ export default function CasesSection() {
           key={caseData.id}
           title={caseData.h1}
           intro={caseData.intro}
-          img={caseData.img}
+          img={caseData.slug}
+          slug={caseData.slug}
         />
       ))}
     </div>

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CaseCards({ title, intro, img }) {
+export default function CaseCards({ title, intro, img, slug }) {
   return (
     <article className="flex flex-col gap-4 max-w-[380px]">
-      <Link href="">
+      <Link href={`/cases/${slug}`}>
         <Image
           src={`/img/cases/${img}.webp`}
           alt={title}
