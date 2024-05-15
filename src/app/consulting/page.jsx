@@ -13,21 +13,16 @@ export default async function consulting() {
   });
 
   const cards = await res.json();
-  console.log(cards);
 
   return (
     <>
-      <h1>consulting</h1>
-      <Link href="/consulting/innovation-og-skalering">Innovation og Skalering</Link>
-      <Link href="/consulting/forretningsudvikling">Forretningsudvikling</Link>
-      <Link href="/consulting/forandring">Forandring</Link>
-      <Link href="/consulting/dokumentation">Dokumentation</Link>
-      <Link href="/consulting/kommunikation">Kommunikation</Link>
-      <Link href="/consulting/kommunikation/underpunkt">under</Link>
+      <h1>Consulting</h1>
       <div className="flex gap-2 flex-wrap">
-        {cards.map((card) => {
-          return <ProductCard key={card.url} heading={card.title} icon={card.icon} url={card.url}></ProductCard>;
-        })}
+        {cards
+          .sort((a, b) => a.id - b.id)
+          .map((card) => {
+            return <ProductCard key={card.url} heading={card.title} icon={card.icon} url={card.url}></ProductCard>;
+          })}
       </div>
     </>
   );
