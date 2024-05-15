@@ -6,13 +6,8 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "./ui/textarea";
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "../lib/supabaseclient";
 import CheckboxTile from "./ui/checkboxtile";
-
-const supabase = createClient(
-  "https://qxxsilydcykxsgfvfvvz.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4eHNpbHlkY3lreHNnZnZmdnZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTY4NTE1MTIsImV4cCI6MjAxMjQyNzUxMn0.XhVtrw5oL-uS_xjTWDhjvePBXTWqN5qrevhCh9XjUSQ"
-);
 
 const areas = [
   {
