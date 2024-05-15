@@ -14,7 +14,6 @@ export default function CasesSection() {
     const { data } = await supabase.from("ib-cases").select("*");
     setCases(data);
   }
-  console.log(cases);
 
   return (
     <div className="flex flex-wrap gap-5 mx-3.5 justify-center py-8">
