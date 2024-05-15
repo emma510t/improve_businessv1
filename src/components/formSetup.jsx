@@ -80,6 +80,13 @@ export default function FormSetup() {
       if (error) {
         throw error;
       }
+
+      await sendEmail(
+        data.email,
+        "Thank you for your submission",
+        `Hello, ${data.name}. Thank you for your inquiry. We will get back to you soon.`,
+        `<strong>Hello, ${data.name}</strong>. Thank you for your inquiry. We will get back to you soon.`
+      );
     } catch (error) {
       console.error("Error submitting form data:", error.message);
     } finally {
