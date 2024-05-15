@@ -1,7 +1,7 @@
 import React from "react";
 
 function page({ params }) {
-  return <div>kommunikation {params.slug}</div>;
+  return <div>underpunkt {params.id}</div>;
 }
 
 export default page;
