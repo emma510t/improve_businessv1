@@ -23,7 +23,9 @@ export default function CasePage({ params }) {
 
     getSlugData();
   }, [params.slug]);
-  const statements = slugData.statements;
+
+  const statements = slugData.statements || [];
+
   console.log(statements);
 
   return (
