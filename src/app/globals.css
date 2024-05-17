@@ -84,3 +84,7 @@ h2,
 h3 {
   font-family: var(--font-poppins);
 }
+
+a {
+  display: block;
+}
