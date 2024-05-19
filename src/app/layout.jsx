@@ -2,6 +2,8 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { Inter, Poppins } from "next/font/google";
+import { Suspense } from "react";
+import Loading from "@/components/loading/loading";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -21,9 +23,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${poppins.variable} text-ibsilver-600 flex flex-col min-h-screen`}>
+      <body
+        className={`${inter.variable} ${poppins.variable} text-ibsilver-600 flex flex-col min-h-screen`}
+      >
         <Header />
-        <main>{children}</main>
+        <Suspense fallback={<Loading />}>
+          <main>{children}</main>
+        </Suspense>
         <Footer />
       </body>
     </html>
