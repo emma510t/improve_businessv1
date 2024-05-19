@@ -87,8 +87,10 @@ export default function FormSetup() {
       <Form>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <fieldset>
-            <legend>Hvad kan vi hjælpe dig med?</legend>
-            <div className="flex gap-3 mt-4">
+            <legend className="font-poppins text-ibsilver-600 text-[17px]">
+              Hvad kan vi hjælpe dig med?
+            </legend>
+            <div className="flex gap-2.5 mt-4 flex-wrap">
               {areas.map((area) => (
                 <CheckboxTile
                   {...register(area.name)}
@@ -103,7 +105,7 @@ export default function FormSetup() {
               ))}
             </div>
           </fieldset>
-          <div className="flex gap-2.5">
+          <div className="flex gap-2.5 flex-wrap">
             <div>
               <Label htmlFor="name">Navn*</Label>
               <Input

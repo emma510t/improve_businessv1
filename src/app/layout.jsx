@@ -21,9 +21,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${poppins.variable} text-ibsilver-600 flex flex-col min-h-screen`}>
+      <body
+        className={`${inter.variable} ${poppins.variable} text-ibsilver-600 flex flex-col min-h-screen`}
+      >
         <Header />
-        <main>{children}</main>
+        <main className="max-w-[1280px] px-2.5 mx-auto">{children}</main>
         <Footer />
       </body>
     </html>
