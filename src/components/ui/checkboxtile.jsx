@@ -6,7 +6,7 @@ const CheckboxTile = ({ children, checked, onChange }) => {
   };
 
   return (
-    <div>
+    <div className="flex items-center">
       <input
         type="checkbox"
         id={children}
