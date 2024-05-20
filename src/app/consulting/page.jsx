@@ -1,5 +1,8 @@
 import { ProductCard } from "@/components/ui/product-card";
 import Link from "next/link";
+import PageTagBreadcrumb from "@/components/ui/pageTagBreadcrumb";
+import SplitSection from "@/components/splitSection";
+import SplitSectionChild from "@/components/splitSectionChild";
 
 export default async function consulting() {
   const headersList = {
@@ -16,6 +19,8 @@ export default async function consulting() {
 
   return (
     <>
+      <SplitSection></SplitSection>
+      <PageTagBreadcrumb currentPage={"Consulting"} />
       <h1>Consulting</h1>
       <div className="flex gap-2 flex-wrap">
         {cards
