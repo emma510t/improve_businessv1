@@ -117,7 +117,7 @@ export default function FormSetup() {
                 <p role="alert">Indtast navn</p>
               )}
             </div>
-            <div className="mt-4">
+            <div className="mt-4 md:mt-0">
               <Label htmlFor="email">E-mail*</Label>
               <Input
                 id="email"
@@ -129,7 +129,7 @@ export default function FormSetup() {
                 <p role="alert">Indtast korrekt e-mail</p>
               )}
             </div>
-            <div className="mt-4">
+            <div className="mt-4 md:mt-0">
               <Label htmlFor="phone">Telefonnummer*</Label>
               <Input
                 id="phone"
