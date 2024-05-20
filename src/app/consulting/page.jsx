@@ -3,6 +3,7 @@ import Link from "next/link";
 import PageTagBreadcrumb from "@/components/ui/pageTagBreadcrumb";
 import SplitSection from "@/components/splitSection";
 import SplitSectionChild from "@/components/splitSectionChild";
+import { H1 } from "@/components/ui/headings";
 
 export default async function consulting() {
   const headersList = {
@@ -19,8 +20,14 @@ export default async function consulting() {
 
   return (
     <>
-      <SplitSection></SplitSection>
-      <PageTagBreadcrumb currentPage={"Consulting"} />
+      <SplitSection>
+        <SplitSectionChild>
+          <PageTagBreadcrumb currentPage={"Consulting"} />
+
+          <H1>Consulting</H1>
+          <p className="mt-2 mb-4">Vi hjælper med at udvikle og implementere en effektiv strategi, hvor vi identificerer jeres udfordringer, og sikrer en bæredygtig og fremadseende løsning.</p>
+        </SplitSectionChild>
+      </SplitSection>
       <h1>Consulting</h1>
       <div className="flex gap-2 flex-wrap">
         {cards
