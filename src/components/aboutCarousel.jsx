@@ -30,7 +30,7 @@ export default function AboutCarousel({ type }) {
   return (
     <>
       <Carousel
-        className="mx-auto w-full max-w-7xl"
+        className="relative mx-auto w-full xl:max-w-[1280px] px-2.5 md:px-3.5 lg:px-8"
         opts={{
           align: "start",
           loop: true,
@@ -39,7 +39,7 @@ export default function AboutCarousel({ type }) {
         <CarouselContent className="-ml-2 md:-ml-4">
           {filteredEmployees.map((employee) => (
             <CarouselItem
-              className="md:basis-1/2 lg:basis-1/3 pl-2 md:pl-4"
+              className="md:basis-1/2 lg:basis-1/3 pl-2 md:pl-4 "
               key={employee.id}
             >
               <EmployeeCard
@@ -52,8 +52,8 @@ export default function AboutCarousel({ type }) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="left-0" />
+        <CarouselNext className="right-0" />
       </Carousel>
     </>
   );
