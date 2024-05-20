@@ -14,10 +14,10 @@ export default function kontakt() {
             alt="Improve Business' kontorbygning"
             width={1920}
             height={1080}
-            className="md:object-cover md:w-full md:h-full"
+            className="md:object-cover md:w-full md:h-full object-bottom"
           />
         </SplitSectionChild>
-        <SplitSectionChild>
+        <SplitSectionChild style="md:pl-[80px]">
           <PageTag>Kontakt</PageTag>
           <h1 className="font-bold text-ibsilver-600 text-[36px]">
             Tag kontakt
