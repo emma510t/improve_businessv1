@@ -105,8 +105,8 @@ export default function FormSetup() {
               ))}
             </div>
           </fieldset>
-          <div className="flex gap-2.5 flex-wrap">
-            <div>
+          <div className="grid md:flex md:gap-2.5">
+            <div className="">
               <Label htmlFor="name">Navn*</Label>
               <Input
                 id="name"
@@ -117,7 +117,7 @@ export default function FormSetup() {
                 <p role="alert">Indtast navn</p>
               )}
             </div>
-            <div>
+            <div className="mt-4">
               <Label htmlFor="email">E-mail*</Label>
               <Input
                 id="email"
@@ -129,7 +129,7 @@ export default function FormSetup() {
                 <p role="alert">Indtast korrekt e-mail</p>
               )}
             </div>
-            <div>
+            <div className="mt-4">
               <Label htmlFor="phone">Telefonnummer*</Label>
               <Input
                 id="phone"
