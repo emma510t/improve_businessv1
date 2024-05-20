@@ -34,7 +34,7 @@ export default function kontakt() {
       </SplitSection>
       <div class="bg-ibsilver-600 text-ibsilver-100 mt-8 w-screen relative left-1/2 right-1/2 mx-[-50vw] md:mt-0">
         <div class="max-w-[1280px] px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto pt-8 pb-16">
-          <h2 class="font-bold text-[32px] sm:text-[36px]">
+          <h2 className="font-bold text-[32px] sm:text-[36px]">
             Kontaktinformation
           </h2>
           <a
