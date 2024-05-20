@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="mt-auto bg-ibsilver-500 text-ibsilver-100 w-full p-7 md:p-10 flex flex-col gap-16 md:gap-24 mt-16">
+    <footer className="mt-auto bg-ibsilver-500 text-ibsilver-100 w-full p-7 md:p-10 flex flex-col gap-16 md:gap-24">
       <div className="text-lg flex flex-col gap-16 md:justify-between md:flex-row md:flex-wrap md:gap-10">
         <div className="flex flex-col gap-5">
           <img src="/logo.svg" alt="logo" className="w-40" />
