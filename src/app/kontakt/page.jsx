@@ -8,7 +8,10 @@ export default function kontakt() {
   return (
     <>
       <SplitSection>
-        <SplitSectionChild type="img" style="order-last">
+        <SplitSectionChild
+          type="img"
+          style="order-last md:absolute md:right-0 md:left-1/2 md:bottom-0 md:top-0 md:w-[50vw]"
+        >
           <Image
             src="/img/contact-hero.webp"
             alt="Improve Business' kontorbygning"
