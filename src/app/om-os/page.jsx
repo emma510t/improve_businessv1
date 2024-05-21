@@ -1,7 +1,9 @@
 import AboutCarousel from "@/components/aboutCarousel";
 import SplitSection from "@/components/splitSection";
 import SplitSectionChild from "@/components/splitSectionChild";
+import { H1, H2, H3 } from "@/components/ui/headings";
 import PageTag from "@/components/ui/pageTag";
+import PageTagBreadcrumb from "@/components/ui/pageTagBreadcrumb";
 import Image from "next/image";
 
 export default function omOs() {
@@ -18,10 +20,8 @@ export default function omOs() {
           />
         </SplitSectionChild>
         <SplitSectionChild>
-          <PageTag>Om os</PageTag>
-          <h1 className="font-bold text-ibsilver-600 text-[36px]">
-            Vores vision
-          </h1>
+          <PageTagBreadcrumb currentPage={"Om os"} />
+          <H1>Vores vision</H1>
           <p className="mt-2 mb-4">
             Hos Improve Business arbejder vi for at skabe en mere bæredygtig og
             effektiv fremtid for dig og din virksomhed. I tæt samarbejde med jer
@@ -37,12 +37,10 @@ export default function omOs() {
           </p>
         </SplitSectionChild>
       </SplitSection>
-      <section className="bg-ibsilver-600 text-ibsilver-100 py-16 w-screen relative left-1/2 right-1/2 mx-[-50vw]">
+      <section className="bg-ibsilver-600 text-ibsilver-100 py-16">
         <div className="max-w-[1280px] px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
           <div className="max-w-[475px]">
-            <h2 className="font-bold text-[32px] sm:text-[36px]">
-              Mød vores team
-            </h2>
+            <H2>Mød vores team</H2>
             <p className="mt-2">
               Vi er et professionelt team med en bred vifte af kompetencer og
               erfaringer. Med forståelse af branchens nuværende landskab er vi
@@ -55,21 +53,17 @@ export default function omOs() {
         </div>
       </section>
 
-      <section className=" text-ibsilver-600 py-16 w-screen relative left-1/2 right-1/2 mx-[-50vw]">
+      <section className=" text-ibsilver-600 py-16">
         <div className="max-w-[1280px] px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
           <div className="max-w-[475px]">
-            <h2 className="font-bold text-[32px] sm:text-[36px]">
-              Mød vores netværk
-            </h2>
+            <H2>Mød vores netværk</H2>
             <p className="mt-2">
               Men vi gør det ikke alene. Stærke partnerskaber og netværk er
               afgørende for os og vi er derfor stolte af at vi på kort tid har
               fået etableret et bredt netværk, stærkt adivisory board og
               partnerskaber både nationalt og internationalt.
             </p>
-            <h3 className="font-bold text-2xl	text-ibsilver-600 mt-4">
-              Advisory board
-            </h3>
+            <H3 className="mt-8"> Advisory board</H3>
           </div>
           <div className="py-12 lg:py-16">
             <AboutCarousel type="advisory" />
@@ -77,45 +71,45 @@ export default function omOs() {
         </div>
       </section>
       <section>
-        <h3 className="font-bold text-2xl	text-ibsilver-600">
-          Udvalgte partnerskaber
-        </h3>
-        <div className="flex flex-wrap gap-16 lg:gap-12 justify-center mt-8 md:mt-12 lg:mt-16">
-          <Image
-            src="/img/partners/ak_alliancen.svg"
-            alt="arbejdskraft alliancen logo"
-            width={300}
-            height={100}
-            className="max-w-[250px] max-h-[80px] object-contain lg:max-w-[200px]"
-          />
-          <Image
-            src="/img/partners/eh-h.svg"
-            alt="Erhvervshus Hovedstaden  logo"
-            width={300}
-            height={100}
-            className="max-w-[250px] max-h-[80px] object-contain lg:max-w-[200px]"
-          />
-          <Image
-            src="/img/partners/energysolutions.webp"
-            alt="energysolutions logo"
-            width={300}
-            height={100}
-            className="max-w-[250px] max-h-[80px] object-contain lg:max-w-[200px]"
-          />
-          <Image
-            src="/img/partners/lokalvaekst.webp"
-            alt="lokalvækst logo"
-            width={300}
-            height={100}
-            className="max-w-[250px] max-h-[80px] object-contain lg:max-w-[200px]"
-          />
-          <Image
-            src="/img/partners/optify.webp"
-            alt="optify logo"
-            width={300}
-            height={100}
-            className="max-w-[250px] max-h-[80px] object-contain lg:max-w-[200px]"
-          />
+        <div className="max-w-[1280px] px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
+          <H3>Udvalgte partnerskaber</H3>
+          <div className="flex flex-wrap gap-16 lg:gap-12 justify-center mt-8 md:py-12 lg:py-16">
+            <Image
+              src="/img/partners/ak_alliancen.svg"
+              alt="arbejdskraft alliancen logo"
+              width={300}
+              height={100}
+              className="max-w-[250px] max-h-[80px] object-contain lg:max-w-[200px]"
+            />
+            <Image
+              src="/img/partners/eh-h.svg"
+              alt="Erhvervshus Hovedstaden  logo"
+              width={300}
+              height={100}
+              className="max-w-[250px] max-h-[80px] object-contain lg:max-w-[200px]"
+            />
+            <Image
+              src="/img/partners/energysolutions.webp"
+              alt="energysolutions logo"
+              width={300}
+              height={100}
+              className="max-w-[250px] max-h-[80px] object-contain lg:max-w-[200px]"
+            />
+            <Image
+              src="/img/partners/lokalvaekst.webp"
+              alt="lokalvækst logo"
+              width={300}
+              height={100}
+              className="max-w-[250px] max-h-[80px] object-contain lg:max-w-[200px]"
+            />
+            <Image
+              src="/img/partners/optify.webp"
+              alt="optify logo"
+              width={300}
+              height={100}
+              className="max-w-[250px] max-h-[80px] object-contain lg:max-w-[200px]"
+            />
+          </div>
         </div>
       </section>
     </>

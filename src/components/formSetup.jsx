@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "./ui/textarea";
 import { supabase } from "../lib/supabaseclient";
 import CheckboxTile from "./ui/checkboxtile";
+import FormError from "./ui/formError";
 
 const areas = [
   {
@@ -105,8 +106,8 @@ export default function FormSetup() {
               ))}
             </div>
           </fieldset>
-          <div className="grid md:flex md:gap-2.5">
-            <div className="">
+          <div className="grid md:flex md:gap-2.5 md:flex-wrap">
+            <div>
               <Label htmlFor="name">Navn*</Label>
               <Input
                 id="name"
@@ -114,36 +115,38 @@ export default function FormSetup() {
                 aria-invalid={errors.name ? "true" : "false"}
               />
               {errors.name?.type === "required" && (
-                <p role="alert">Indtast navn</p>
+                <FormError>Indtast navn</FormError>
               )}
             </div>
-            <div className="mt-4 md:mt-0">
-              <Label htmlFor="email">E-mail*</Label>
-              <Input
-                id="email"
-                type="email"
-                {...register("email", { required: true })}
-                aria-invalid={errors.email ? "true" : "false"}
-              />
-              {errors.email?.type === "required" && (
-                <p role="alert">Indtast korrekt e-mail</p>
-              )}
-            </div>
-            <div className="mt-4 md:mt-0">
-              <Label htmlFor="phone">Telefonnummer*</Label>
-              <Input
-                id="phone"
-                type="tel"
-                {...register("phone", {
-                  required: "Telefonnummer er påkrævet",
-                  minLength: {
-                    value: 8,
-                    message: "Telefonnummeret skal være mindst 8 tegn",
-                  },
-                })}
-                aria-invalid={errors.phone ? "true" : "false"}
-              />
-              {errors.phone && <p role="alert">{errors.phone.message}</p>}
+            <div className="md:flex md:gap-2.5 md:flex-wrap">
+              <div className="mt-4 md:mt-0">
+                <Label htmlFor="email">E-mail*</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  {...register("email", { required: true })}
+                  aria-invalid={errors.email ? "true" : "false"}
+                />
+                {errors.email?.type === "required" && (
+                  <FormError>Indtast korrekt e-mail</FormError>
+                )}
+              </div>
+              <div className="mt-4 md:mt-0">
+                <Label htmlFor="phone">Telefonnummer*</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  {...register("phone", {
+                    required: "Telefonnummer er påkrævet",
+                    minLength: {
+                      value: 8,
+                      message: "Skriv mindst 8 tegn",
+                    },
+                  })}
+                  aria-invalid={errors.phone ? "true" : "false"}
+                />
+                {errors.phone && <FormError>{errors.phone.message}</FormError>}
+              </div>
             </div>
           </div>
           <div>
@@ -151,7 +154,7 @@ export default function FormSetup() {
             <Textarea
               id="description"
               {...register("description", {
-                required: true,
+                required: "Skriv en besked",
                 minLength: {
                   value: 5,
                   message: "Beskeden er for kort",
@@ -163,7 +166,7 @@ export default function FormSetup() {
               })}
             />
             {errors.description && (
-              <p role="alert">{errors.description.message}</p>
+              <FormError>{errors.description.message}</FormError>
             )}
           </div>
           {/* {errors.name && <span>This field is required</span>} */}

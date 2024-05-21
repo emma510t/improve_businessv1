@@ -1,7 +1,9 @@
 import FormSetup from "@/components/formSetup";
 import SplitSection from "@/components/splitSection";
 import SplitSectionChild from "@/components/splitSectionChild";
+import { H1, H2 } from "@/components/ui/headings";
 import PageTag from "@/components/ui/pageTag";
+import PageTagBreadcrumb from "@/components/ui/pageTagBreadcrumb";
 import Image from "next/image";
 
 export default function kontakt() {
@@ -18,10 +20,8 @@ export default function kontakt() {
           />
         </SplitSectionChild>
         <SplitSectionChild>
-          <PageTag>Kontakt</PageTag>
-          <h1 className="font-bold text-ibsilver-600 text-[36px]">
-            Tag kontakt
-          </h1>
+          <PageTagBreadcrumb currentPage={"Kontakt"} />
+          <H1>Tag kontakt</H1>
           <p className="mt-2 mb-4">
             Vi er klar til at hjælpe jer. Udfyld formularen og vi vender tilbage
             snarest!
@@ -31,9 +31,7 @@ export default function kontakt() {
       </SplitSection>
       <div class="bg-ibsilver-600 text-ibsilver-100 mt-8  md:mt-0">
         <div class="max-w-[1280px] px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto pt-8 pb-16">
-          <h2 className="font-bold text-[32px] sm:text-[36px]">
-            Kontaktinformation
-          </h2>
+          <H2>Kontaktinformation</H2>
           <a
             href="tel:+4530141614"
             class="font-bold font-poppins text-[18px] w-fit	"
@@ -52,10 +50,8 @@ export default function kontakt() {
       <section className="mt-8 ">
         <div className="min-[850px]:flex min-[850px]:gap-12 lg:gap-24 max-w-[1280px] w-full px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto  md:py-8">
           <div>
-            <h2 className="text-[32px] font-bold sm:text-[36px] md:text[46px] mb-8">
-              Consulting
-            </h2>
-            <div className="flex gap-6">
+            <H2>Consulting</H2>
+            <div className="flex gap-6 mt-6 md:mt-8">
               <div className="min-w-[120px]">
                 <Image
                   className="bg-ibgreen-400 object-cover aspect-square px-2 bg-gradient-to-t from-darkoverlay via-transparent via-transparent to-transparent"
@@ -86,11 +82,9 @@ export default function kontakt() {
               </div>
             </div>
           </div>
-          <div className="mt-8 min-[850px]:mt-0">
-            <h2 className="text-[32px] font-bold sm:text-[36px] md:text[46px] mb-8">
-              Academy
-            </h2>
-            <div className="flex gap-6">
+          <div className="mt-16 min-[850px]:mt-0">
+            <H2>Academy</H2>
+            <div className="flex gap-6 mt-6 md:mt-8">
               <div className="min-w-[120px]">
                 <Image
                   className="bg-ibgreen-400 object-cover aspect-square px-2 bg-gradient-to-t from-darkoverlay via-transparent via-transparent to-transparent"
