@@ -4,7 +4,7 @@ import Image from "next/image";
 import PageTagBreadcrumb from "@/components/ui/pageTagBreadcrumb";
 import SplitSection from "@/components/splitSection";
 import SplitSectionChild from "@/components/splitSectionChild";
-import { H1, H2 } from "@/components/ui/headings";
+import { H1, H2, P } from "@/components/ui/fonts";
 import { Button, buttonVariants } from "@/components/ui/button";
 
 export default async function consulting() {
@@ -13,13 +13,10 @@ export default async function consulting() {
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4eHNpbHlkY3lreHNnZnZmdnZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTY4NTE1MTIsImV4cCI6MjAxMjQyNzUxMn0.XhVtrw5oL-uS_xjTWDhjvePBXTWqN5qrevhCh9XjUSQ",
   };
 
-  const res = await fetch(
-    "https://qxxsilydcykxsgfvfvvz.supabase.co/rest/v1/ib-product-cards",
-    {
-      method: "GET",
-      headers: headersList,
-    }
-  );
+  const res = await fetch("https://qxxsilydcykxsgfvfvvz.supabase.co/rest/v1/ib-product-cards", {
+    method: "GET",
+    headers: headersList,
+  });
 
   const cards = await res.json();
 
@@ -27,75 +24,69 @@ export default async function consulting() {
     <>
       <SplitSection>
         <SplitSectionChild img className="order-last">
-          <Image
-            src="/img/consulting-hero.webp"
-            alt="To personer taler ved bord"
-            width={1920}
-            height={1080}
-            className="md:w-full md:h-full max-h-[380px] object-cover md:max-h-none"
-          />
+          <Image src="/img/consulting-hero.webp" alt="To personer taler ved bord" width={1920} height={1080} className="md:w-full md:h-full max-h-[380px] object-cover md:max-h-none" />
         </SplitSectionChild>
         <SplitSectionChild className={"bg-ibsilver-200"}>
           <PageTagBreadcrumb currentPage={"Consulting"} />
           <H1>Sammen løser vi dine udfordringer</H1>
-          <p className="mt-2 mb-4">
-            Vi hjælper med at udvikle og implementere en effektiv strategi, hvor
-            vi identificerer jeres udfordringer, og sikrer en bæredygtig og
-            fremadseende løsning.
-          </p>
-          <p className="mt-2 mb-4">
-            Vores ekspertområder dækker alt fra udviklingsfasen af nye ideer og
-            strategier, samt det værdiskabende kommunikative arbejde, som følger
-            en ny implementeret strategi.
-          </p>
+          <P className="mt-2 mb-4">Vi hjælper med at udvikle og implementere en effektiv strategi, hvor vi identificerer jeres udfordringer, og sikrer en bæredygtig og fremadseende løsning.</P>
+          <P className="mt-2 mb-4">
+            Vores ekspertområder dækker alt fra udviklingsfasen af nye ideer og strategier, samt det værdiskabende kommunikative arbejde, som følger en ny implementeret strategi.
+          </P>
           <Button hasChevron>Se vores ekspertområder</Button>
         </SplitSectionChild>
       </SplitSection>
       <SplitSection>
-        <SplitSectionChild
-          className={"bg-ibgreen-400 px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10"}
-        >
+        <SplitSectionChild className={"bg-ibgreen-400 px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10"}>
           <H2>Sådan kommer du i gang</H2>
-          <Button variant="ghost" size="noPadding" hasArrow>
+          <Button className="hidden md:flex" variant="ghost" size="noPadding" hasArrow>
             Kontakt os
           </Button>
         </SplitSectionChild>
-        <SplitSectionChild
-          className={"px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10"}
-        >
-          <p>
-            Udforsk vores forskellige ydelser nedenfor og find det, der bedst
-            matcher dine behov.
-          </p>
-          <p>
-            Klik på ydelsen for at læse mere om hvad vi kan gøre for dig
-            indenfor området.
-          </p>
-          <p>
-            Skriv til os via vores kontaktformular for at aftale, hvordan vi
-            bedst løser dine udfordringer.
-          </p>
-          <p>VI glæder os til at høre fra dig!</p>
+        <SplitSectionChild className={"flex flex-col gap-8 md:pt-11"}>
+          <P>Udforsk vores forskellige ydelser nedenfor og find det, der bedst matcher dine behov.</P>
+          <P>Klik på ydelsen for at læse mere om hvad vi kan gøre for dig indenfor området.</P>
+          <P>Skriv til os via vores kontaktformular for at aftale, hvordan vi bedst løser dine udfordringer.</P>
+          <P>VI glæder os til at høre fra dig!</P>
+          <Button className="mr-auto md:hidden" variant="ghost" size="noPadding" hasArrow>
+            Kontakt os
+          </Button>
         </SplitSectionChild>
       </SplitSection>
       <section className="bg-ibsilver-500">
-        <H2 className={"text-ibsilver-100"}>Vores ekspertområder</H2>
+        <div className="pb-8 md:pb-24 pt-[25px] max-w-[1280px] w-full px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
+          <H2 className={"text-ibsilver-100"}>Vores ekspertområder</H2>
+          <div className="flex flex-wrap justify-between gap-2 pt-[46px]">
+            {cards
+              .filter((menuItem) => menuItem.parent === "consulting")
+              .sort((a, b) => a.id - b.id)
+              .map((card) => {
+                return <ProductCard key={card.url} heading={card.title} icon={card.icon} url={card.url} desc={card.desc} variant="white"></ProductCard>;
+              })}
+          </div>
+        </div>
       </section>
-      <h1>Consulting</h1>
-      <div className="flex gap-2 flex-wrap">
+      <SplitSection>
+        <SplitSectionChild img>
+          <Image src="/img/consulting-potentiale.jpg" alt="To personer taler ved bord" width={1920} height={1080} className="md:w-full md:h-full max-h-[380px] object-cover md:max-h-none" />
+        </SplitSectionChild>
+        <SplitSectionChild>
+          <H2>Opnå højere potentiale</H2>
+          <P className="mt-2 mb-4">Vores mål er at optimere din virksomheds potentiale gennem skræddersyet rådgivning baseret på høje faglige standarder og et solidt etisk fundament.</P>
+          <P className="mt-2 mb-4">
+            Sammen med vores erfarne konsulenter identificerer vi nøgleområder inden for bæredygtighed og udvikler gradvise løsninger til at forbedre din virksomheds præstationer og resultater.
+          </P>
+          <Button hasArrow>Kontakt os</Button>
+        </SplitSectionChild>
+      </SplitSection>
+
+      {/*       <div className="flex gap-2 flex-wrap">
         {cards
           .sort((a, b) => a.id - b.id)
           .map((card) => {
-            return (
-              <ProductCard
-                key={card.url}
-                heading={card.title}
-                icon={card.icon}
-                url={card.url}
-              ></ProductCard>
-            );
+            return <ProductCard key={card.url} heading={card.title} icon={card.icon} url={card.url}></ProductCard>;
           })}
-      </div>
+      </div> */}
     </>
   );
 }
