@@ -8,16 +8,13 @@ export default function kontakt() {
   return (
     <>
       <SplitSection>
-        <SplitSectionChild
-          img
-          className="order-last md:absolute md:right-0 md:left-1/2 md:bottom-0 md:top-0 md:w-[50vw]"
-        >
+        <SplitSectionChild img className="order-last">
           <Image
             src="/img/contact-hero.webp"
             alt="Improve Business' kontorbygning"
             width={1920}
             height={1080}
-            className="md:object-cover md:w-full md:h-full"
+            className=" md:w-full md:h-full max-h-[380px] object-cover md:max-h-none"
           />
         </SplitSectionChild>
         <SplitSectionChild>
