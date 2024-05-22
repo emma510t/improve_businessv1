@@ -20,8 +20,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${poppins.variable} text-ibsilver-600 flex flex-col min-h-screen overflow-x-hidden	`}>
+    <html lang="en" className="scroll-smooth">
+      <body
+        className={`${inter.variable} ${poppins.variable} text-ibsilver-600 flex flex-col min-h-screen overflow-x-hidden	`}
+      >
         <Header />
         <main>{children}</main>
         <Footer />

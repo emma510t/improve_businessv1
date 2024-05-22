@@ -23,6 +23,7 @@ module.exports = {
       },
       colors: {
         darkoverlay: "rgba(41, 38, 52, .72)",
+        herooverlay: "rgba(41, 38, 52, 0.40)",
         ibgreen: {
           200: "#87FFD4",
           400: "#35E0A2",
