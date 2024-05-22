@@ -1,8 +1,11 @@
 import CasesSection from "@/components/casesSection";
 import ProductCardSection from "@/components/productCardSection";
+import SplitSection from "@/components/splitSection";
+import SplitSectionChild from "@/components/splitSectionChild";
 import TestimonialSlider from "@/components/testimonialSlider";
 import { Button } from "@/components/ui/button";
-import { H1, H2 } from "@/components/ui/fonts";
+import { H1, H2, P } from "@/components/ui/fonts";
+import Image from "next/image";
 import Link from "next/link";
 export default function Home() {
   return (
@@ -36,27 +39,106 @@ export default function Home() {
           />
         </Link>
       </section>
-      <section id="consultant-areas" className="mt-12 md:mt-16 scroll-mt-28">
+      <section
+        id="consultant-areas"
+        className="mt-12 mb-24 md:mt-16 scroll-mt-28"
+      >
         <div className="max-w-[1280px] w-full px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
-          <div>
+          <div className=" min-[875px]:grid min-[875px]:grid-cols-2">
             <H2>Konsulentområder</H2>
-            <p className="mt-4">
+            <P className="max-w-[640px]">
               Vi hjælper SMV’er med at udvikle og implementere processer,
               strategier og kommunikation, med bæredygtighed i centrum. Vores
               arbejde er målrettet og effektivt med det formål at opnå de bedste
               resultater for din virksomhed.
-            </p>
+            </P>
           </div>
           <div>
             <ProductCardSection parentCategory={"consulting"} />
           </div>
         </div>
       </section>
+      <SplitSection>
+        <SplitSectionChild img>
+          <Image
+            src="/img/forside-woman-presentation.jpeg"
+            alt="kvinde holder præsentation"
+            width={640}
+            height={750}
+            className="md:w-full md:h-full max-h-[380px] object-cover md:max-h-none"
+          />
+        </SplitSectionChild>
+        <SplitSectionChild className="md:flex md:flex-col bg-ibsilver-200">
+          <div>
+            <H2>Akademiet</H2>
+            <P>
+              Vi har vendt rekruttering på hovedet - Improve Business tilbyder
+              løsninger, der både sikrer danske virksomheders konkurrenceevne i
+              et marked i forandring og samtidig har en betydelig samfundsmæssig
+              værdi for mennesker uden for arbejdsmarkedet.
+            </P>
+            <P>
+              Med Academy vender vi rekruttering på hovedet og tilbyder landets
+              jobcentre, virksomheder og borger en casebaseret tilgang til
+              rekruttering. Vi matcher blindt på baggrund af motivation og
+              parkerer alle fordomme i rekruttering.
+            </P>
+          </div>
+          <Link href="/academy" className="md:mt-auto mt-4 w-fit h-fit">
+            <Button variant="ghost" size="noPadding" hasArrow>
+              Læs mere
+            </Button>
+          </Link>
+        </SplitSectionChild>
+      </SplitSection>
+      <SplitSection>
+        <SplitSectionChild img className="order-last">
+          <Image
+            src="/img/forside-man-with-coffee.jpeg"
+            alt="mand sidder ved bord"
+            width={640}
+            height={750}
+            className="md:w-full md:h-full max-h-[380px] object-cover md:max-h-none"
+          />
+        </SplitSectionChild>
+        <SplitSectionChild className="md:flex md:flex-col bg-ibsilver-500 text-ibsilver-100">
+          <div>
+            <H2>Dynamisk, Effektivt & Visionært</H2>
+            <P>
+              Hos Improve Business stræber vi efter at være dynamiske, effektive
+              og visionære i alt, hvad vi gør. Bæredygtighed er centralt og
+              gennemgående i alt vi tilbyder, da det er vigtigt for os, at vi
+              sammen skaber en positiv indvirkning på samfundet og miljøet.
+            </P>
+            <P>
+              Dette indebærer bl.a. udvikling af målrettede strategier og
+              handlingsplaner samt implementering i virksomhedens
+              forretningsmodel og værdikæde.
+            </P>
+            <P>
+              Hos Improve Business mener vi, at fremtidens sunde forretning er
+              en bæredygtig forretning, og det er vores mål at hjælpe
+              virksomheder med at opnå dette.
+            </P>
+          </div>
+          <Link href="/academy" className="md:mt-auto w-fit h-fit mt-4">
+            <Button variant="ghost" size="noPadding" hasArrow>
+              Se hvad vi tilbyder
+            </Button>
+          </Link>
+        </SplitSectionChild>
+      </SplitSection>
       <section>
-        <TestimonialSlider />
+        <div className="pb-8 md:pb-12 pt-[25px] md:pt-[40px] max-w-[1280px] w-full px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
+          <H2>Hvad siger vores kunder?</H2>
+          <TestimonialSlider />
+        </div>
       </section>
       <section className="bg-ibsilver-200 w-screen">
-        <CasesSection />
+        <div className="pb-8 md:pb-12 pt-[25px] md:pt-[40px] max-w-[1280px] w-full px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
+          <H2>Cases</H2>
+          <CasesSection />
+        </div>
       </section>
     </>
   );
