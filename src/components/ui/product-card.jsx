@@ -34,7 +34,7 @@ const ProductCard = React.forwardRef(({ className, desc, heading, icon, url, var
           <Icon iconVersion={icon} />
           <h4 className="text-xl font-bold lg:text-2xl">{heading}</h4>
         </div>
-        <div className="flex flex-col lg:gap-5 justify-between h-[190px] lg:h-[208px]">
+        <div className={`flex flex-col lg:gap-5 justify-between ${hasDesc && "h-[190px] lg:h-[208px]"}`}>
           {hasDesc && <p className="text-sm font-normal lg:text-base">{desc}</p>}
           <ArrowRight className="ml-auto mt-auto h-5 w-5 transition-transform transform translate-x-0 group-hover:translate-x-1" />
         </div>

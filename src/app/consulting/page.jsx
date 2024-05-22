@@ -1,5 +1,3 @@
-"use client";
-
 import { ProductCard } from "@/components/ui/product-card";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,26 +6,9 @@ import SplitSection from "@/components/splitSection";
 import SplitSectionChild from "@/components/splitSectionChild";
 import { H1, H2, P } from "@/components/ui/fonts";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import ProductCardSection from "@/components/productCardSection";
 
 export default function consulting() {
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    const headersList = {
-      apikey:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4eHNpbHlkY3lreHNnZnZmdnZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTY4NTE1MTIsImV4cCI6MjAxMjQyNzUxMn0.XhVtrw5oL-uS_xjTWDhjvePBXTWqN5qrevhCh9XjUSQ",
-    };
-
-    fetch("https://qxxsilydcykxsgfvfvvz.supabase.co/rest/v1/ib-product-cards", {
-      method: "GET",
-      headers: headersList,
-    })
-      .then((res) => res.json())
-      .then((data) => setCards(data))
-      .catch((err) => console.error("Error fetching data:", err));
-  }, []);
-
   return (
     <>
       <SplitSection>
@@ -41,14 +22,14 @@ export default function consulting() {
           <P className="mt-2 mb-4">
             Vores ekspertområder dækker alt fra udviklingsfasen af nye ideer og strategier, samt det værdiskabende kommunikative arbejde, som følger en ny implementeret strategi.
           </P>
-          <Button
+          {/*    <Button
             onClick={() => {
               console.log("hej");
             }}
             hasChevron
           >
             Se vores ekspertområder
-          </Button>
+          </Button> */}
         </SplitSectionChild>
       </SplitSection>
       <SplitSection>
@@ -71,14 +52,7 @@ export default function consulting() {
       <section className="bg-ibsilver-500">
         <div className="pb-8 md:pb-24 pt-[25px] max-w-[1280px] w-full px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
           <H2 className={"text-ibsilver-100"}>Vores ekspertområder</H2>
-          <div className="flex flex-wrap justify-between gap-2 pt-[46px]">
-            {cards
-              .filter((menuItem) => menuItem.parent === "consulting")
-              .sort((a, b) => a.id - b.id)
-              .map((card) => {
-                return <ProductCard key={card.url} heading={card.title} icon={card.icon} url={card.url} desc={card.desc} variant="white"></ProductCard>;
-              })}
-          </div>
+          <ProductCardSection parentCategory="consulting" cardVariant="white" desc></ProductCardSection>
         </div>
       </section>
       <SplitSection>
@@ -94,14 +68,6 @@ export default function consulting() {
           <Button hasArrow>Kontakt os</Button>
         </SplitSectionChild>
       </SplitSection>
-
-      {/*       <div className="flex gap-2 flex-wrap">
-        {cards
-          .sort((a, b) => a.id - b.id)
-          .map((card) => {
-            return <ProductCard key={card.url} heading={card.title} icon={card.icon} url={card.url}></ProductCard>;
-          })}
-      </div> */}
     </>
   );
 }
