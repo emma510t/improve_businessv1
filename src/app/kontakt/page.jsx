@@ -1,7 +1,7 @@
 import FormSetup from "@/components/formSetup";
 import SplitSection from "@/components/splitSection";
 import SplitSectionChild from "@/components/splitSectionChild";
-import { H1, H2 } from "@/components/ui/fonts";
+import { H1, H2, P } from "@/components/ui/fonts";
 import PageTagBreadcrumb from "@/components/ui/pageTagBreadcrumb";
 import Image from "next/image";
 
@@ -21,10 +21,10 @@ export default function kontakt() {
         <SplitSectionChild>
           <PageTagBreadcrumb currentPage={"Kontakt"} />
           <H1>Tag kontakt</H1>
-          <p className="mt-2 mb-4">
+          <P>
             Vi er klar til at hjælpe jer. Udfyld formularen og vi vender tilbage
             snarest!
-          </p>
+          </P>
           <FormSetup />
         </SplitSectionChild>
       </SplitSection>
@@ -61,11 +61,11 @@ export default function kontakt() {
                 />
               </div>
               <div>
-                <p>
+                <P>
                   Anne Hørsted er vores CEO og ekspert på Sustainability. Hun er
                   klar til at hjælpe dig, når kundekravene rammer din
                   virkelighed.
-                </p>
+                </P>
                 <a
                   href="mailto:anne@improvebusiness.dk"
                   className="flex gap-1 items-center text-ibgreen-400 hover:text-ibgreen-200 mt-2"
@@ -94,11 +94,11 @@ export default function kontakt() {
                 />
               </div>
               <div>
-                <p>
+                <P>
                   Thea Eriksen er underviser og projektleder på vores Academy
                   forløb og er klar til at hjælpe dig med at forløse dit
                   potentiale.
-                </p>
+                </P>
                 <a
                   href="mailto:thea@improvebusiness.dk"
                   className="flex gap-1 items-center text-ibgreen-400 hover:text-ibgreen-200 mt-2"
