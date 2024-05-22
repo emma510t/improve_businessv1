@@ -20,13 +20,13 @@ export default function consulting() {
           <H1>Sammen løser vi dine udfordringer</H1>
           <P>Vi hjælper med at udvikle og implementere en effektiv strategi, hvor vi identificerer jeres udfordringer, og sikrer en bæredygtig og fremadseende løsning.</P>
           <P>Vores ekspertområder dækker alt fra udviklingsfasen af nye ideer og strategier, samt det værdiskabende kommunikative arbejde, som følger en ny implementeret strategi.</P>
-          <Link className="mt-auto" href="#ekspertOmråder">
+          <Link className="pt-7 mt-auto" href="#ekspertOmråder">
             <Button hasChevron>Se vores ekspertområder</Button>
           </Link>
         </SplitSectionChild>
       </SplitSection>
       <SplitSection>
-        <SplitSectionChild className={"md:bg-ibgreen-400 md:flex md:flex-col md:justify-between px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10"}>
+        <SplitSectionChild className={"max-md:pb-0 md:bg-ibgreen-400 md:flex md:flex-col md:justify-between px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10"}>
           <H2>Sådan kommer du i gang</H2>
           <Link className="hidden md:block md:mr-auto" href="/kontakt">
             <Button variant="ghost" size="noPadding" hasArrow>
@@ -34,7 +34,7 @@ export default function consulting() {
             </Button>
           </Link>
         </SplitSectionChild>
-        <SplitSectionChild className={"flex flex-col gap-8 md:pt-11"}>
+        <SplitSectionChild className={"max-md:pt-0 flex flex-col gap-8 md:pt-11"}>
           <P>Udforsk vores forskellige ydelser nedenfor og find det, der bedst matcher dine behov.</P>
           <P>Klik på ydelsen for at læse mere om hvad vi kan gøre for dig indenfor området.</P>
           <P>Skriv til os via vores kontaktformular for at aftale, hvordan vi bedst løser dine udfordringer.</P>
@@ -46,7 +46,7 @@ export default function consulting() {
           </Link>
         </SplitSectionChild>
       </SplitSection>
-      <section id="ekspertOmråder" className="bg-ibsilver-500">
+      <section id="ekspertOmråder" className="bg-ibsilver-500 scroll-m-[79px]">
         <div className="pb-8 md:pb-24 pt-[25px] max-w-[1280px] w-full px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
           <H2 className={"text-ibsilver-100"}>Vores ekspertområder</H2>
           <ProductCardSection parentCategory="consulting" cardVariant="white" desc></ProductCardSection>
@@ -60,7 +60,7 @@ export default function consulting() {
           <H2>Opnå højere potentiale</H2>
           <P>Vores mål er at optimere din virksomheds potentiale gennem skræddersyet rådgivning baseret på høje faglige standarder og et solidt etisk fundament.</P>
           <P>Sammen med vores erfarne konsulenter identificerer vi nøgleområder inden for bæredygtighed og udvikler gradvise løsninger til at forbedre din virksomheds præstationer og resultater.</P>
-          <Link className="mt-auto" href="/kontakt">
+          <Link className="pt-7 mt-auto" href="/kontakt">
             <Button hasArrow>Kontakt os</Button>
           </Link>
         </SplitSectionChild>
