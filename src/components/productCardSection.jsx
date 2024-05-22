@@ -18,7 +18,7 @@ export default function ProductCardSection({ parentCategory, cardVariant, desc }
 
   return (
     <>
-      <div className="flex flex-wrap justify-between gap-2 pt-[46px]">
+      <div className="flex flex-wrap justify-between gap-2 pt-5">
         {productCards
           .sort((a, b) => a.id - b.id)
           .map((productCard) => {
