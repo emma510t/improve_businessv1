@@ -1,8 +1,7 @@
 import FormSetup from "@/components/formSetup";
 import SplitSection from "@/components/splitSection";
 import SplitSectionChild from "@/components/splitSectionChild";
-import { H1, H2 } from "@/components/ui/headings";
-import PageTag from "@/components/ui/pageTag";
+import { H1, H2 } from "@/components/ui/fonts";
 import PageTagBreadcrumb from "@/components/ui/pageTagBreadcrumb";
 import Image from "next/image";
 

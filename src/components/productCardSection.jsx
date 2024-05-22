@@ -3,7 +3,11 @@ import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseclient";
 import { ProductCard } from "./ui/product-card";
 
-export default function ProductCardSection({ parentCategory, cardVariant, desc }) {
+export default function ProductCardSection({
+  parentCategory,
+  cardVariant,
+  desc,
+}) {
   const [productCards, setProductCards] = useState([]);
 
   useEffect(() => {
@@ -11,14 +15,17 @@ export default function ProductCardSection({ parentCategory, cardVariant, desc }
   }, [parentCategory]);
 
   async function getProductCards(parent) {
-    const { data } = await supabase.from("ib-product-cards").select("*").eq("parent", parent);
+    const { data } = await supabase
+      .from("ib-product-cards")
+      .select("*")
+      .eq("parent", parent);
 
     setProductCards(data);
   }
 
   return (
     <>
-      <div className="flex flex-wrap justify-between gap-2 pt-[46px]">
+      <div className="flex flex-wrap gap-2 sm:gap-4 md:gap-4 lg:gap-5 pt-[46px]">
         {productCards
           .sort((a, b) => a.id - b.id)
           .map((productCard) => {
