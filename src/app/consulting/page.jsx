@@ -1,3 +1,5 @@
+"use client";
+
 import { ProductCard } from "@/components/ui/product-card";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,19 +8,25 @@ import SplitSection from "@/components/splitSection";
 import SplitSectionChild from "@/components/splitSectionChild";
 import { H1, H2, P } from "@/components/ui/fonts";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
-export default async function consulting() {
-  const headersList = {
-    apikey:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4eHNpbHlkY3lreHNnZnZmdnZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTY4NTE1MTIsImV4cCI6MjAxMjQyNzUxMn0.XhVtrw5oL-uS_xjTWDhjvePBXTWqN5qrevhCh9XjUSQ",
-  };
+export default function consulting() {
+  const [cards, setCards] = useState([]);
 
-  const res = await fetch("https://qxxsilydcykxsgfvfvvz.supabase.co/rest/v1/ib-product-cards", {
-    method: "GET",
-    headers: headersList,
-  });
+  useEffect(() => {
+    const headersList = {
+      apikey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4eHNpbHlkY3lreHNnZnZmdnZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTY4NTE1MTIsImV4cCI6MjAxMjQyNzUxMn0.XhVtrw5oL-uS_xjTWDhjvePBXTWqN5qrevhCh9XjUSQ",
+    };
 
-  const cards = await res.json();
+    fetch("https://qxxsilydcykxsgfvfvvz.supabase.co/rest/v1/ib-product-cards", {
+      method: "GET",
+      headers: headersList,
+    })
+      .then((res) => res.json())
+      .then((data) => setCards(data))
+      .catch((err) => console.error("Error fetching data:", err));
+  }, []);
 
   return (
     <>
@@ -33,13 +41,20 @@ export default async function consulting() {
           <P className="mt-2 mb-4">
             Vores ekspertområder dækker alt fra udviklingsfasen af nye ideer og strategier, samt det værdiskabende kommunikative arbejde, som følger en ny implementeret strategi.
           </P>
-          <Button hasChevron>Se vores ekspertområder</Button>
+          <Button
+            onClick={() => {
+              console.log("hej");
+            }}
+            hasChevron
+          >
+            Se vores ekspertområder
+          </Button>
         </SplitSectionChild>
       </SplitSection>
       <SplitSection>
-        <SplitSectionChild className={"bg-ibgreen-400 px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10"}>
+        <SplitSectionChild className={"md:bg-ibgreen-400 md:flex md:flex-col md:justify-between px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10"}>
           <H2>Sådan kommer du i gang</H2>
-          <Button className="hidden md:flex" variant="ghost" size="noPadding" hasArrow>
+          <Button className="hidden md:flex md:mr-auto" variant="ghost" size="noPadding" hasArrow>
             Kontakt os
           </Button>
         </SplitSectionChild>
