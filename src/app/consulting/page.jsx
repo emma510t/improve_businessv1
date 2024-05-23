@@ -60,8 +60,10 @@ export default function consulting() {
           <H2>Opnå højere potentiale</H2>
           <P>Vores mål er at optimere din virksomheds potentiale gennem skræddersyet rådgivning baseret på høje faglige standarder og et solidt etisk fundament.</P>
           <P>Sammen med vores erfarne konsulenter identificerer vi nøgleområder inden for bæredygtighed og udvikler gradvise løsninger til at forbedre din virksomheds præstationer og resultater.</P>
-          <Link className="pt-7 mt-auto" href="/kontakt">
-            <Button hasArrow>Kontakt os</Button>
+          <Link className="pt-7 mt-auto w-fit h-fit" href="/kontakt">
+            <Button variant="ghost" hasArrow>
+              Kontakt os
+            </Button>
           </Link>
         </SplitSectionChild>
       </SplitSection>
