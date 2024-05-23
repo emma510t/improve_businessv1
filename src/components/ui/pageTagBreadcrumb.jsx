@@ -20,7 +20,7 @@ export default function PageTagBreadcrumb({ dark, currentPage, parent, parentHRe
             <BreadcrumbSeparator />
           </>
         )}
-        <BreadcrumbItem className={`text-ibgreen-600 ${dark && "text-ibgreen-400"}`}>{currentPage}</BreadcrumbItem>
+        <BreadcrumbItem className={`text-ibgreen-600 ${dark && "text-ibgreen-200"}`}>{currentPage}</BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
   );
