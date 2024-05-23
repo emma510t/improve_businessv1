@@ -26,7 +26,7 @@ export default function consulting() {
         </SplitSectionChild>
       </SplitSection>
       <SplitSection>
-        <SplitSectionChild className={"max-md:pb-0 md:bg-ibgreen-400 md:flex md:flex-col md:justify-between px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10"}>
+        <SplitSectionChild sticky className={"max-md:pb-0 md:bg-ibgreen-400 md:flex md:flex-col md:justify-between px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10"}>
           <H2>Sådan kommer du i gang</H2>
           <Link className="hidden md:block md:mr-auto" href="/kontakt">
             <Button variant="ghost" size="noPadding" hasArrow>
