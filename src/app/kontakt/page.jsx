@@ -19,7 +19,7 @@ export default function kontakt() {
         <SplitSectionChild>
           <PageTagBreadcrumb currentPage={"Kontakt"} />
           <H1>Tag kontakt</H1>
-          <P>Vi er klar til at hjælpe jer. Udfyld formularen og vi vender tilbage snarest!</P>
+
           <FormSetup />
         </SplitSectionChild>
       </SplitSection>
