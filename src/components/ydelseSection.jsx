@@ -1,3 +1,4 @@
+"use client";
 import SplitSection from "./splitSection";
 import SplitSectionChild from "./splitSectionChild";
 import { supabase } from "@/lib/supabaseclient";
@@ -10,10 +11,7 @@ export default function YdelseSection({ parent }) {
 
   useEffect(() => {
     async function getSlugChildrenData() {
-      const { data } = await supabase
-        .from("ib-product-cards")
-        .select("*")
-        .eq("parent", parent);
+      const { data } = await supabase.from("ib-product-cards").select("*").eq("parent", parent);
       setSlugChildrenData(data);
     }
 
@@ -23,10 +21,7 @@ export default function YdelseSection({ parent }) {
   return (
     <div className="snap-y snap-mandatory overflow-y-auto h-[calc(100vh-79px)]">
       {slugChildrenData.map((child) => (
-        <div
-          key={child.icon}
-          className="snap-start h-[calc(100vh-79px)] flex-shrink-0"
-        >
+        <div key={child.icon} className="snap-start h-[calc(100vh-79px)] flex-shrink-0">
           <SplitSection>
             <SplitSectionChild className="bg-ibsilver-500 text-ibsilver-100">
               <H2>{child.title}</H2>
