@@ -8,6 +8,10 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import ProductCardSection from "@/components/productCardSection";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Consulting",
+};
+
 export default function consulting() {
   return (
     <>
