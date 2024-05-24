@@ -1,7 +1,4 @@
-"use client";
 import { supabase } from "@/lib/supabaseclient";
-import { useState, useEffect } from "react";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { H1, H2, P } from "@/components/ui/fonts";
 import SplitSection from "@/components/splitSection";
 import SplitSectionChild from "@/components/splitSectionChild";
@@ -9,17 +6,35 @@ import PageTagBreadcrumb from "@/components/ui/pageTagBreadcrumb";
 import ProductCardSection from "@/components/productCardSection";
 import CaseStatementCard from "@/components/ui/caseStatementCard";
 
-export default function CasePage({ params }) {
-  const [slugData, setSlugData] = useState({});
+export async function generateMetadata({ params }) {
+  const { slug } = params;
 
-  useEffect(() => {
-    async function getSlugData() {
-      const { data } = await supabase.from("ib-cases").select("*").eq("slug", params.slug);
-      setSlugData(data[0]);
-    }
+  const { data, error } = await supabase.from("ib-cases").select("*").eq("slug", slug);
 
-    getSlugData();
-  }, [params.slug]);
+  if (error) {
+    console.error("Error fetching metadata:", error);
+    return {
+      title: "Default Title",
+      description: "Default description",
+    };
+  }
+
+  const cases = data[0];
+
+  return {
+    title: "Case: " + cases?.h1 || "Default Title",
+  };
+}
+
+export default async function CasePage({ params }) {
+  const { data, error } = await supabase.from("ib-cases").select("*").eq("slug", params.slug);
+
+  if (error || !data || data.length === 0) {
+    // Handle the error case (e.g., return a 404 page or a different component)
+    return <div>Error: Data not found</div>;
+  }
+
+  const slugData = data[0];
 
   const statements = slugData.statements || [];
 
