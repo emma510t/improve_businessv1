@@ -3,7 +3,6 @@ import SplitSectionChild from "./splitSectionChild";
 import { supabase } from "@/lib/supabaseclient";
 import { useState, useEffect } from "react";
 import { H2, P } from "./ui/fonts";
-import Image from "next/image";
 import Icon from "./ui/icon";
 
 export default function YdelseSection({ parent }) {
@@ -22,20 +21,23 @@ export default function YdelseSection({ parent }) {
   }, [parent]);
 
   return (
-    <>
-      {slugChildrenData.map((child) => {
-        return (
-          <SplitSection key={child.icon}>
-            <SplitSectionChild>
+    <div className="snap-y snap-mandatory overflow-y-auto h-[calc(100vh-79px)]">
+      {slugChildrenData.map((child) => (
+        <div
+          key={child.icon}
+          className="snap-start h-[calc(100vh-79px)] flex-shrink-0"
+        >
+          <SplitSection>
+            <SplitSectionChild className="bg-ibsilver-500 text-ibsilver-100">
               <H2>{child.title}</H2>
               <P>{child.content}</P>
             </SplitSectionChild>
-            <SplitSectionChild img>
-              <Icon iconVersion={child.icon} />
+            <SplitSectionChild img className="bg-ibgreen-400 content-center">
+              <Icon large iconVersion={child.icon} />
             </SplitSectionChild>
           </SplitSection>
-        );
-      })}
-    </>
+        </div>
+      ))}
+    </div>
   );
 }

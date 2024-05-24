@@ -7,6 +7,7 @@ export default function ProductCardSection({
   parentCategory,
   cardVariant,
   desc,
+  slugIcon,
 }) {
   const [productCards, setProductCards] = useState([]);
 
@@ -27,6 +28,7 @@ export default function ProductCardSection({
     <>
       <div className="flex flex-wrap gap-2 sm:gap-4 md:gap-4 lg:gap-5 pt-[46px]">
         {productCards
+          .filter((productCard) => productCard.icon !== slugIcon)
           .sort((a, b) => a.id - b.id)
           .map((productCard) => {
             return (
