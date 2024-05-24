@@ -6,6 +6,10 @@ import PageTag from "@/components/ui/pageTag";
 import PageTagBreadcrumb from "@/components/ui/pageTagBreadcrumb";
 import Image from "next/image";
 
+export const metadata = {
+  title: "Om os",
+};
+
 export default function omOs() {
   return (
     <>

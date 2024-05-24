@@ -1,7 +1,4 @@
-"use client";
 import { supabase } from "@/lib/supabaseclient";
-import { useState, useEffect } from "react";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { H1, H2, P } from "@/components/ui/fonts";
 import SplitSection from "@/components/splitSection";
 import SplitSectionChild from "@/components/splitSectionChild";
@@ -9,17 +6,35 @@ import PageTagBreadcrumb from "@/components/ui/pageTagBreadcrumb";
 import ProductCardSection from "@/components/productCardSection";
 import CaseStatementCard from "@/components/ui/caseStatementCard";
 
-export default function CasePage({ params }) {
-  const [slugData, setSlugData] = useState({});
+export async function generateMetadata({ params }) {
+  const { slug } = params;
 
-  useEffect(() => {
-    async function getSlugData() {
-      const { data } = await supabase.from("ib-cases").select("*").eq("slug", params.slug);
-      setSlugData(data[0]);
-    }
+  const { data, error } = await supabase.from("ib-cases").select("*").eq("slug", slug);
 
-    getSlugData();
-  }, [params.slug]);
+  if (error) {
+    console.error("Error fetching metadata:", error);
+    return {
+      title: "Default Title",
+      description: "Default description",
+    };
+  }
+
+  const cases = data[0];
+
+  return {
+    title: "Case: " + cases?.h1 || "Default Title",
+  };
+}
+
+export default async function CasePage({ params }) {
+  const { data, error } = await supabase.from("ib-cases").select("*").eq("slug", params.slug);
+
+  if (error || !data || data.length === 0) {
+    // Handle the error case (e.g., return a 404 page or a different component)
+    return <div>Error: Data not found</div>;
+  }
+
+  const slugData = data[0];
 
   const statements = slugData.statements || [];
 
@@ -42,7 +57,7 @@ export default function CasePage({ params }) {
       </section>
       <SplitSection>
         <SplitSectionChild sticky className={"pb-2 bg-ibsilver-500 text-ibsilver-100 md:bg-ibgreen-400 md:text-ibsilver-600 lg:flex lg:flex-col lg:justify-center"}>
-          <H2 className="lg:text-8xl">Løsning</H2>
+          <h2 className="font-bold text-[32px]/[1.4] pb-4 sm:text-4xl md:text-6xl lg:text-8xl xl:text-8xl">Løsning</h2>
           <p className="text-base md:text-3xl">Improve Business’ løsningsforslag er tredelt</p>
         </SplitSectionChild>
         <SplitSectionChild className={"pt-0 bg-ibsilver-500 text-ibsilver-100"}>
@@ -71,7 +86,7 @@ export default function CasePage({ params }) {
           </div>
         </SplitSectionChild>
       </SplitSection>
-      <section className="px-3 py-8 flex flex-col md:flex-row">
+      <section className="px-3 py-8 max-w-[1280px] mx-auto grid md:grid-cols-2 lg:grid-cols-3">
         {statements.map((statement) => (
           <CaseStatementCard key={statement.id} desc={statement.statement} title={slugData.h1} />
         ))}

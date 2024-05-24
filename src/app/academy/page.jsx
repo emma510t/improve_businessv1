@@ -1,6 +1,10 @@
 import PageTagBreadcrumb from "@/components/ui/pageTagBreadcrumb";
 import { H1, H3, P } from "@/components/ui/fonts";
 
+export const metadata = {
+  title: "Academy",
+};
+
 export default function academy() {
   return (
     <>
