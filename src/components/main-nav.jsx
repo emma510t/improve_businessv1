@@ -125,7 +125,12 @@ function MainNav({ menuItems }) {
               />
             </g>
           </svg>
-          <Drawer open={isOpen} onClose={toggleDrawer} direction="right">
+          <Drawer
+            open={isOpen}
+            onClose={toggleDrawer}
+            direction="right"
+            style={{ width: "100vw" }}
+          >
             <div className="h-full flex flex-col bg-ibsilver-500 text-ibsilver-100">
               <div className="flex m-6 justify-end">
                 <svg
@@ -153,38 +158,57 @@ function MainNav({ menuItems }) {
                   />
                 </svg>
               </div>
-              <div className="flex flex-col items-center gap-8 mt-12">
-                <Accordion type="single" collapsible>
-                  {menuItems
-                    .filter((menuItem) => menuItem.parent === "consulting")
-                    .sort((a, b) => a.id - b.id)
-                    .map((menuItem) => {
-                      const subMenuItems = menuItems.filter(
-                        (subMenuItem) => subMenuItem.parent === menuItem.icon
-                      );
-                      return (
-                        <AccordionItem
-                          key={menuItem.icon}
-                          value={`item-${menuItem.icon}`}
-                        >
-                          <AccordionTrigger>{menuItem.title}</AccordionTrigger>
-                          <AccordionContent>
-                            <ul className="flex flex-col gap-4 text-sm">
-                              {subMenuItems.map((subMenuItem) => (
-                                <li key={subMenuItem.icon}>
-                                  <MenuItem
-                                    linkref={`/consulting/${subMenuItem.url}`}
-                                  >
-                                    {subMenuItem.title}
-                                  </MenuItem>
-                                </li>
-                              ))}
-                            </ul>
-                          </AccordionContent>
-                        </AccordionItem>
-                      );
-                    })}
+              <div className="flex flex-col mt-12">
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="consulting" className="border-none ">
+                    <AccordionTrigger
+                      link="/consulting"
+                      className="p-4 border-t-2 border-ibsilver-400 text-2xl font-semibold"
+                    >
+                      Consulting
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="flex flex-col gap-4 text-sm">
+                        {menuItems
+                          .filter(
+                            (menuItem) => menuItem.parent === "consulting"
+                          )
+                          .sort((a, b) => a.id - b.id)
+                          .map((menuItem) => (
+                            <li key={menuItem.icon}>
+                              <MenuItem linkref={`/consulting/${menuItem.url}`}>
+                                {menuItem.title}
+                              </MenuItem>
+                            </li>
+                          ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
                 </Accordion>
+                <div className="w-full">
+                  <Link
+                    href="/acdemy"
+                    className="p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold	"
+                  >
+                    Academy
+                  </Link>
+                </div>
+                <div className="w-full">
+                  <Link
+                    href="/om-os"
+                    className="p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold	"
+                  >
+                    Om os
+                  </Link>
+                </div>
+                <div className="w-full">
+                  <Link
+                    href="/kontakt"
+                    className="p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold	"
+                  >
+                    Kontakt
+                  </Link>
+                </div>
               </div>
             </div>
           </Drawer>
