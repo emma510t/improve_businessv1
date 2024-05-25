@@ -17,7 +17,7 @@ export default function consulting() {
     <>
       <SplitSection>
         <SplitSectionChild img className="order-last">
-          <Image src="/img/consulting-hero.webp" alt="To personer taler ved bord" width={1920} height={1080} className="md:w-full md:h-full max-h-[380px] object-cover md:max-h-none" />
+          <Image src="/img/consulting-hero.webp" alt="To personer taler ved bord" width={1920} height={1080} className="md:w-full md:h-full max-h-[380px] object-cover md:max-h-none bg-ibsilver-400" />
         </SplitSectionChild>
         <SplitSectionChild className={"bg-ibsilver-200 flex flex-col"}>
           <PageTagBreadcrumb currentPage={"Consulting"} />
@@ -58,7 +58,13 @@ export default function consulting() {
       </section>
       <SplitSection>
         <SplitSectionChild img>
-          <Image src="/img/consulting-potentiale.jpg" alt="To personer taler ved bord" width={1920} height={1080} className="md:w-full md:h-full max-h-[380px] object-cover md:max-h-none" />
+          <Image
+            src="/img/consulting-potentiale.jpg"
+            alt="To personer taler ved bord"
+            width={1920}
+            height={1080}
+            className="md:w-full md:h-full max-h-[380px] object-cover md:max-h-none bg-ibsilver-400"
+          />
         </SplitSectionChild>
         <SplitSectionChild className="flex flex-col">
           <H2>Opnå højere potentiale</H2>
