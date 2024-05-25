@@ -16,7 +16,7 @@ export default function CasesSection() {
   }
 
   return (
-    <div className="flex flex-wrap gap-5 mx-3.5 justify-center py-8">
+    <div className="flex flex-wrap gap-x-5 gap-y-10 min-[850px]:gap-5 lg:gap-6 mx-3.5 py-8">
       {cases.map((caseData) => (
         <CaseCards
           key={caseData.id}

@@ -1,28 +1,40 @@
-"use client";
 import { supabase } from "@/lib/supabaseclient";
-import { useState, useEffect } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { H1, H2, P } from "@/components/ui/fonts";
+import SplitSection from "@/components/splitSection";
+import SplitSectionChild from "@/components/splitSectionChild";
+import PageTagBreadcrumb from "@/components/ui/pageTagBreadcrumb";
+import ProductCardSection from "@/components/productCardSection";
+import CaseStatementCard from "@/components/ui/caseStatementCard";
 
-export default function CasePage({ params }) {
-  const [slugData, setSlugData] = useState({});
+export async function generateMetadata({ params }) {
+  const { slug } = params;
 
-  useEffect(() => {
-    async function getSlugData() {
-      const { data } = await supabase
-        .from("ib-cases")
-        .select("*")
-        .eq("slug", params.slug);
-      setSlugData(data[0]);
-    }
+  const { data, error } = await supabase.from("ib-cases").select("*").eq("slug", slug);
 
-    getSlugData();
-  }, [params.slug]);
+  if (error) {
+    console.error("Error fetching metadata:", error);
+    return {
+      title: "Default Title",
+      description: "Default description",
+    };
+  }
+
+  const cases = data[0];
+
+  return {
+    title: "Case: " + cases?.h1 || "Default Title",
+  };
+}
+
+export default async function CasePage({ params }) {
+  const { data, error } = await supabase.from("ib-cases").select("*").eq("slug", params.slug);
+
+  if (error || !data || data.length === 0) {
+    // Handle the error case (e.g., return a 404 page or a different component)
+    return <div>Error: Data not found</div>;
+  }
+
+  const slugData = data[0];
 
   const statements = slugData.statements || [];
 
@@ -30,59 +42,61 @@ export default function CasePage({ params }) {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-ibsilver-600">{slugData.h1}</h1>
+      <div className="bg-ibsilver-600 pb-8 md:pb-16 pt-[25px] md:pt-[40px] px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10">
+        <PageTagBreadcrumb currentPage="Case Study" dark />
+        <H1 className="text-ibsilver-100">{slugData.h1}</H1>
+      </div>
 
-      <section className="bg-ibsilver-600 text-ibsilver-100 px-3 py-8">
-        <h2 className="font-bold font-poppins text-[32px]">
-          Situation og udfordringer
-        </h2>
-        <p>{slugData.situation_udfordringer}</p>
+      <section className="md:flex md:min-h-[50vh]">
+        <SplitSectionChild className={"pb-0"}>
+          <H2 className="font-bold font-poppins text-[32px]">Situation og udfordringer</H2>
+        </SplitSectionChild>
+        <SplitSectionChild className={"pt-0"}>
+          <P>{slugData.situation_udfordringer}</P>
+        </SplitSectionChild>
       </section>
-      <section className="text-ibsilver-600 px-3 py-8">
-        <h2 className="font-bold font-poppins text-[32px]">Løsning</h2>
-        <p>Improve Business’ løsningsforslag er tredelt</p>
-        <div className="flex flex-col gap-8 py-4">
-          <div>
-            <h3 className="font-bold text-2xl mb-2">
-              Fase 1: {slugData.fase_1_headline}
-            </h3>
-            <p>{slugData.fase_2_text}</p>
+      <SplitSection>
+        <SplitSectionChild sticky className={"pb-2 bg-ibsilver-500 text-ibsilver-100 md:bg-ibgreen-400 md:text-ibsilver-600 lg:flex lg:flex-col lg:justify-center"}>
+          <h2 className="font-bold text-[32px]/[1.4] pb-4 sm:text-4xl md:text-6xl lg:text-8xl xl:text-8xl">Løsning</h2>
+          <p className="text-base md:text-3xl">Improve Business’ løsningsforslag er tredelt</p>
+        </SplitSectionChild>
+        <SplitSectionChild className={"pt-0 bg-ibsilver-500 text-ibsilver-100"}>
+          <div className="flex flex-col gap-8 py-4 md:gap-12">
+            <div>
+              <h3 className="font-bold text-xl md:text-2xl mb-2">
+                <span className="text-ibgreen-400 text-2xl md:text-3xl">Fase 1: </span>
+                {slugData.fase_1_headline}
+              </h3>
+              <P>{slugData.fase_1_text}</P>
+            </div>
+            <div>
+              <h3 className="font-bold text-xl md:text-2xl mb-2">
+                <span className="text-ibgreen-400 text-2xl md:text-3xl">Fase 2: </span>
+                {slugData.fase_2_headline}
+              </h3>
+              <P>{slugData.fase_2_text}</P>
+            </div>
+            <div>
+              <h3 className="font-bold text-xl md:text-2xl mb-2">
+                <span className="text-ibgreen-400 text-2xl md:text-3xl">Fase 3: </span>
+                {slugData.fase_3_headline}
+              </h3>
+              <P>{slugData.fase_3_text}</P>
+            </div>
           </div>
-          <div>
-            <h3 className="font-bold text-2xl mb-2">
-              Fase 2: {slugData.fase_2_headline}
-            </h3>
-            <p>{slugData.fase_2_text}</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-2xl mb-2">
-              Fase 3: {slugData.fase_3_headline}
-            </h3>
-            <p>{slugData.fase_3_text}</p>
-          </div>
+        </SplitSectionChild>
+      </SplitSection>
+      <section className="px-3 py-8 max-w-[1280px] mx-auto grid md:grid-cols-2 lg:grid-cols-3">
+        {statements.map((statement) => (
+          <CaseStatementCard key={statement.id} desc={statement.statement} title={slugData.h1} />
+        ))}
+      </section>
+
+      <section className="bg-ibsilver-600">
+        <div className="pb-8 md:pb-24 pt-[25px] max-w-[1280px] w-full px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
+          <H2 className="text-ibsilver-100">Se vores konsulentområder</H2>
+          <ProductCardSection cardVariant="white" parentCategory="consulting" />
         </div>
-      </section>
-      <section>
-        <Carousel
-          className="mx-auto w-full max-w-7xl"
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-        >
-          <CarouselContent className="-ml-2 md:-ml-4">
-            {statements.map((statement) => (
-              <CarouselItem
-                className="md:basis-1/2 lg:basis-1/3 pl-2 md:pl-4"
-                key={statement.id}
-              >
-                <p>{statement.statement}</p>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
       </section>
     </>
   );
