@@ -4,12 +4,12 @@ export default function Loading() {
       <div className="relative">
         <svg className="absolute animate-spin h-14 w-14  ..." width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M50 100C77.6142 100 100 77.6142 100 50C100 22.3858 77.6142 0 50 0C22.3858 0 0 22.3858 0 50C0 77.6142 22.3858 100 50 100ZM50 92C73.1959 92 92 73.1959 92 50C92 26.804 73.1959 7.99996 50 7.99996C26.804 7.99996 7.99996 26.804 7.99996 50C7.99996 73.1959 26.804 92 50 92Z"
             fill="#1F1D27"
           />
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M100 50C100 22.3858 77.6142 0 50 0V7.99996C73.1959 7.99998 92 26.804 92 50C92 50 92 50 92 50L100 50Z" fill="#A8A6AD" />
+          <path fillRule="evenodd" clipRule="evenodd" d="M100 50C100 22.3858 77.6142 0 50 0V7.99996C73.1959 7.99998 92 26.804 92 50C92 50 92 50 92 50L100 50Z" fill="#A8A6AD" />
         </svg>
 
         <svg className="h-14 w-14" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,8 +23,8 @@ export default function Loading() {
             fill="#1F1D27"
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M50 100C77.6142 100 100 77.6142 100 50C100 22.3858 77.6142 0 50 0C22.3858 0 0 22.3858 0 50C0 77.6142 22.3858 100 50 100ZM50 92C73.1959 92 92 73.1959 92 50C92 26.804 73.1959 7.99996 50 7.99996C26.804 7.99996 7.99996 26.804 7.99996 50C7.99996 73.1959 26.804 92 50 92Z"
             fill="#FAF8FF"
           />
