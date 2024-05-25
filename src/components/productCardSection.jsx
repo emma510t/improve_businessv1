@@ -34,7 +34,7 @@ export default function ProductCardSection({
             return (
               <ProductCard
                 key={productCard.url}
-                heading={productCard.title}
+                heading={productCard.card_title}
                 icon={productCard.icon}
                 url={productCard.url}
                 variant={cardVariant}
