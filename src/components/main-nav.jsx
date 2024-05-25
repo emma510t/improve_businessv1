@@ -3,17 +3,42 @@
 import MenuItem from "./ui/menu-item";
 import Link from "next/link";
 import Image from "next/image";
-
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
+import React from "react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 function MainNav({ menuItems }) {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggleDrawer();
+    }
+  };
   return (
     <>
-      <NavigationMenu className="w-full flex justify-between bg-ibsilver-500 md:px-7 md:py-5">
+      <NavigationMenu className="w-full flex justify-between bg-ibsilver-500 px-5 py-3 md:px-7 md:py-5">
         <Link href="/">
-          <Image src="/logo.svg" alt="logo" width="144" height="39"></Image>
+          <Image src="/logo.svg" alt="logo" width="144" height="39" />
         </Link>
-        <NavigationMenuList className="flex flex-col my-auto text-4xl md:flex-row md:gap-7 md:text-lg">
+        <NavigationMenuList className="hidden  my-auto text-4xl md:flex md:flex-row md:gap-7 md:text-lg">
           <NavigationMenuItem>
             <NavigationMenuTrigger>
               <MenuItem linkref="/consulting">Consulting</MenuItem>
@@ -24,16 +49,24 @@ function MainNav({ menuItems }) {
                   .filter((menuItem) => menuItem.parent === "consulting")
                   .sort((a, b) => a.id - b.id)
                   .map((menuItem) => {
-                    const subMenuItems = menuItems.filter((subMenuItem) => subMenuItem.parent === menuItem.icon);
+                    const subMenuItems = menuItems.filter(
+                      (subMenuItem) => subMenuItem.parent === menuItem.icon
+                    );
                     return (
                       <div key={menuItem.icon} className="flex flex-col gap-8">
                         <p className="font-poppins text-lg">
-                          <MenuItem linkref={`/consulting/${menuItem.url}`}>{menuItem.title}</MenuItem>
+                          <MenuItem linkref={`/consulting/${menuItem.url}`}>
+                            {menuItem.title}
+                          </MenuItem>
                         </p>
                         <ul className="flex flex-col gap-4 text-sm">
                           {subMenuItems.map((subMenuItem) => (
                             <li key={subMenuItem.icon}>
-                              <MenuItem linkref={`/consulting/${subMenuItem.url}`}>{subMenuItem.title}</MenuItem>
+                              <MenuItem
+                                linkref={`/consulting/${subMenuItem.url}`}
+                              >
+                                {subMenuItem.title}
+                              </MenuItem>
                             </li>
                           ))}
                         </ul>
@@ -59,6 +92,103 @@ function MainNav({ menuItems }) {
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
+        <div className="flex self-center">
+          <svg
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
+            onClick={toggleDrawer}
+            className="cursor-pointer"
+            xmlns="http://www.w3.org/2000/svg"
+            width="34"
+            height="28"
+            viewBox="0 0 34 28"
+            fill="none"
+          >
+            <g filter="url(#filter0_d_93_211)">
+              <path
+                d="M2 2H31"
+                stroke="#C8C8C8"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+              <path
+                d="M2 13H31"
+                stroke="#C8C8C8"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+              <path
+                d="M2 24H31"
+                stroke="#C8C8C8"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+            </g>
+          </svg>
+          <Drawer open={isOpen} onClose={toggleDrawer} direction="right">
+            <div className="h-full flex flex-col bg-ibsilver-500 text-ibsilver-100">
+              <div className="flex m-6 justify-end">
+                <svg
+                  onKeyDown={handleKeyDown}
+                  tabIndex={0}
+                  onClick={toggleDrawer}
+                  className="cursor-pointer"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="28"
+                  height="28"
+                  viewBox="0 0 28 28"
+                  fill="none"
+                >
+                  <path
+                    d="M2.5 26L26.5 2"
+                    stroke="#C8C8C8"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M2 2L26 26"
+                    stroke="#C8C8C8"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+              <div className="flex flex-col items-center gap-8 mt-12">
+                <Accordion type="single" collapsible>
+                  {menuItems
+                    .filter((menuItem) => menuItem.parent === "consulting")
+                    .sort((a, b) => a.id - b.id)
+                    .map((menuItem) => {
+                      const subMenuItems = menuItems.filter(
+                        (subMenuItem) => subMenuItem.parent === menuItem.icon
+                      );
+                      return (
+                        <AccordionItem
+                          key={menuItem.icon}
+                          value={`item-${menuItem.icon}`}
+                        >
+                          <AccordionTrigger>{menuItem.title}</AccordionTrigger>
+                          <AccordionContent>
+                            <ul className="flex flex-col gap-4 text-sm">
+                              {subMenuItems.map((subMenuItem) => (
+                                <li key={subMenuItem.icon}>
+                                  <MenuItem
+                                    linkref={`/consulting/${subMenuItem.url}`}
+                                  >
+                                    {subMenuItem.title}
+                                  </MenuItem>
+                                </li>
+                              ))}
+                            </ul>
+                          </AccordionContent>
+                        </AccordionItem>
+                      );
+                    })}
+                </Accordion>
+              </div>
+            </div>
+          </Drawer>
+        </div>
       </NavigationMenu>
     </>
   );
