@@ -15,23 +15,23 @@ export default async function YdelseSection({ parent }) {
   const slugChildrenData = data;
 
   return (
-    <div className="snap-y snap-mandatory overflow-y-auto h-[calc(100vh-79px)]">
-      {slugChildrenData.map((child) => (
-        <div key={child.icon} className="snap-start h-[calc(100vh-79px)] flex-shrink-0">
-          <SplitSection>
-            <SplitSectionChild className="bg-ibsilver-500 text-ibsilver-100">
+    <div>
+      <SplitSection>
+        <SplitSectionChild className="bg-ibsilver-500 text-ibsilver-100">
+          {slugChildrenData.map((child) => (
+            <div key={child.icon}>
               <H2>{child.title}</H2>
               {child.content.map((content, index) => (
                 <P key={index}>{content.text}</P>
               ))}
               <P>{slugChildrenData.content}</P>
-            </SplitSectionChild>
-            <SplitSectionChild img className="bg-ibgreen-400 content-center">
-              <Icon large iconVersion={child.icon} />
-            </SplitSectionChild>
-          </SplitSection>
-        </div>
-      ))}
+            </div>
+          ))}
+        </SplitSectionChild>
+        <SplitSectionChild img className="bg-ibgreen-400 content-center">
+          {/*   <Icon large iconVersion={child.icon} /> */}
+        </SplitSectionChild>
+      </SplitSection>
     </div>
   );
 }
