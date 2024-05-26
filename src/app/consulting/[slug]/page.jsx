@@ -36,7 +36,23 @@ export default async function Page({ params }) {
   }
 
   const slugData = data[0];
-  console.log(slugData);
+  console.log(slugData.content);
+  console.log(typeof slugData.content);
+  console.log(Array.isArray(slugData.content));
+  if (!Array.isArray(slugData.content)) {
+    return null; // or some fallback UI
+  }
+  const renderContent = (content) => {
+    if (Array.isArray(content)) {
+      console.log("Content:", content);
+      return content.map((item, index) => <P key={index}>{item.text}</P>);
+    } else if (typeof content === "string") {
+      // Split string into paragraphs based on line breaks if needed
+      return content.split("\r\n").map((line, index) => <P key={index}>{line}</P>);
+    } else {
+      return <p>Invalid content format</p>;
+    }
+  };
 
   return (
     <>
@@ -47,9 +63,10 @@ export default async function Page({ params }) {
         <SplitSectionChild className="bg-ibsilver-500 text-ibsilver-100">
           <PageTagBreadcrumb parent={"Consulting"} parentHRef={"/consulting"} currentPage={slugData.title} />
           <H1>{slugData.title}</H1>
-          {slugData.content.map((paragraph, index) => (
-            <P key={index}>{paragraph.text}</P>
-          ))}
+          {renderContent(slugData.content)}
+          {/* {slugData.content.map((content, index) => (
+            <P key={index}>{content.text}</P>
+          ))} */}
         </SplitSectionChild>
       </SplitSection>
       <section>
