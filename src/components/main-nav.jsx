@@ -32,13 +32,14 @@ function MainNav({ menuItems }) {
       toggleDrawer();
     }
   };
+
   return (
     <>
       <NavigationMenu className="w-full flex justify-between bg-ibsilver-500 px-5 py-3 md:px-7 md:py-5">
         <Link href="/">
           <Image src="/logo.svg" alt="logo" width="144" height="39" />
         </Link>
-        <NavigationMenuList className="hidden  my-auto text-4xl md:flex md:flex-row md:gap-7 md:text-lg">
+        <NavigationMenuList className="hidden my-auto text-4xl md:flex md:flex-row md:gap-7 md:text-lg">
           <NavigationMenuItem>
             <NavigationMenuTrigger>
               <MenuItem linkref="/consulting">Consulting</MenuItem>
@@ -92,7 +93,7 @@ function MainNav({ menuItems }) {
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
-        <div className="flex self-center">
+        <div className="flex self-center md:hidden">
           <svg
             onKeyDown={handleKeyDown}
             tabIndex={0}
@@ -159,52 +160,86 @@ function MainNav({ menuItems }) {
                 </svg>
               </div>
               <div className="flex flex-col mt-12">
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="consulting" className="border-none ">
+                <Accordion type="multiple" className="w-full">
+                  <AccordionItem value="consulting" className="border-none">
                     <AccordionTrigger
                       link="/consulting"
-                      className="p-4 border-t-2 border-ibsilver-400 text-2xl font-semibold"
+                      toggleDrawer={toggleDrawer}
+                      className="p-4 border-t-2 border-b border-ibsilver-400 text-2xl font-semibold"
                     >
                       Consulting
                     </AccordionTrigger>
-                    <AccordionContent>
-                      <ul className="flex flex-col gap-4 text-sm">
+                    <AccordionContent className="p-0 bg-ibsilver-600">
+                      <ul className="flex flex-col text-sm">
                         {menuItems
                           .filter(
                             (menuItem) => menuItem.parent === "consulting"
                           )
                           .sort((a, b) => a.id - b.id)
                           .map((menuItem) => (
-                            <li key={menuItem.icon}>
-                              <MenuItem linkref={`/consulting/${menuItem.url}`}>
+                            <AccordionItem
+                              key={menuItem.icon}
+                              value={menuItem.icon}
+                              className="border-b-0 border-t border-ibsilver-400 p-4"
+                            >
+                              <AccordionTrigger
+                                link={`/consulting/${menuItem.url}`}
+                                toggleDrawer={toggleDrawer}
+                                className="p-2 text-lg"
+                              >
                                 {menuItem.title}
-                              </MenuItem>
-                            </li>
+                              </AccordionTrigger>
+                              <AccordionContent>
+                                <ul className="flex flex-col text-sm">
+                                  {menuItems
+                                    .filter(
+                                      (subItem) =>
+                                        subItem.parent === menuItem.icon
+                                    )
+                                    .sort((a, b) => a.id - b.id)
+                                    .map((subItem) => (
+                                      <li key={subItem.icon}>
+                                        <Link
+                                          onClick={toggleDrawer}
+                                          href={`/consulting/${subItem.url}`}
+                                          className="px-4 py-3 text-base"
+                                        >
+                                          {subItem.title}
+                                        </Link>
+                                      </li>
+                                    ))}
+                                </ul>
+                              </AccordionContent>
+                            </AccordionItem>
                           ))}
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
+
                 <div className="w-full">
                   <Link
-                    href="/acdemy"
-                    className="p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold	"
+                    onClick={toggleDrawer}
+                    href="/academy"
+                    className="p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold"
                   >
                     Academy
                   </Link>
                 </div>
                 <div className="w-full">
                   <Link
+                    onClick={toggleDrawer}
                     href="/om-os"
-                    className="p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold	"
+                    className="p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold"
                   >
                     Om os
                   </Link>
                 </div>
                 <div className="w-full">
                   <Link
+                    onClick={toggleDrawer}
                     href="/kontakt"
-                    className="p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold	"
+                    className="p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold"
                   >
                     Kontakt
                   </Link>

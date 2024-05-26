@@ -19,24 +19,42 @@ const AccordionItem = React.forwardRef(({ className, ...props }, ref) => (
 AccordionItem.displayName = "AccordionItem";
 
 const AccordionTrigger = React.forwardRef(
-  ({ className, children, link, ...props }, ref) => (
-    <AccordionPrimitive.Header className="flex">
-      <AccordionPrimitive.Trigger
-        ref={ref}
-        className={cn(
-          "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline",
-          className
-        )}
-        {...props}
-      >
-        <Link href={link} className="flex-1 text-left">
-          {children}
-        </Link>
-        <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 ml-2" />
-      </AccordionPrimitive.Trigger>
-    </AccordionPrimitive.Header>
-  )
+  ({ className, toggleDrawer, children, link, ...props }, ref) => {
+    const handleTextClick = (e) => {
+      if (link) {
+        e.stopPropagation(); // Prevent triggering the accordion toggle
+        window.location.href = link; // Redirect to the link if it's provided
+        toggleDrawer();
+      }
+    };
+
+    const handleChevronClick = (e) => {
+      e.stopPropagation(); // Prevent triggering the text click
+    };
+
+    return (
+      <AccordionPrimitive.Header className="flex">
+        <AccordionPrimitive.Trigger
+          ref={ref}
+          className={cn(
+            "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline",
+            className
+          )}
+          {...props}
+        >
+          <div className="flex-1 text-left max-w-fit" onClick={handleTextClick}>
+            {children}
+          </div>
+          <ChevronDown
+            className="h-4 w-4 shrink-0 transition-transform duration-200 ml-2 cursor-pointer pointer-events-none	"
+            onClick={handleChevronClick}
+          />
+        </AccordionPrimitive.Trigger>
+      </AccordionPrimitive.Header>
+    );
+  }
 );
+
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
 const AccordionContent = React.forwardRef(
