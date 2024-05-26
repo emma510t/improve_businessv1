@@ -61,7 +61,7 @@ export default async function Page({ params }) {
           <Image src={`/img/${slugData.icon}.jpg`} alt={slugData.title} width={800} height={800} className="md:w-full md:h-full max-h-[380px] object-cover md:max-h-none bg-ibsilver-400" />
         </SplitSectionChild>
         <SplitSectionChild className="bg-ibsilver-500 text-ibsilver-100">
-          <PageTagBreadcrumb parent={"Consulting"} parentHRef={"/consulting"} currentPage={slugData.title} />
+          <PageTagBreadcrumb dark parent={"Consulting"} parentHRef={"/consulting"} currentPage={slugData.title} />
           <H1>{slugData.title}</H1>
           {renderContent(slugData.content)}
           {/* {slugData.content.map((content, index) => (

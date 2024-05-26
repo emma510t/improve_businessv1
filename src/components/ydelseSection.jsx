@@ -1,9 +1,10 @@
 import SplitSection from "./splitSection";
 import SplitSectionChild from "./splitSectionChild";
 import { supabase } from "@/lib/supabaseclient";
-
+import { Button } from "./ui/button";
 import { H2, P } from "./ui/fonts";
 import Icon from "./ui/icon";
+import Link from "next/link";
 
 export default async function YdelseSection({ parent }) {
   const { data, error } = await supabase.from("ib-product-cards").select("*").eq("parent", parent);
@@ -25,7 +26,11 @@ export default async function YdelseSection({ parent }) {
               {child.content.map((content, index) => (
                 <P key={index}>{content.text}</P>
               ))}
-              <P>{slugChildrenData.content}</P>
+              <Link href={`/consulting/${child.url}`}>
+                <Button variant="ghost" size="noPadding" hasArrow>
+                  Læs mere
+                </Button>
+              </Link>
             </div>
           ))}
         </SplitSectionChild>

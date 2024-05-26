@@ -29,13 +29,13 @@ export default function kontakt() {
           <FormSetup />
         </SplitSectionChild>
       </SplitSection>
-      <div class="bg-ibsilver-600 text-ibsilver-100 mt-8  md:mt-0">
-        <div class="max-w-[1280px] px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto pt-8 pb-16">
+      <div className="bg-ibsilver-600 text-ibsilver-100 mt-8  md:mt-0">
+        <div className="max-w-[1280px] px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto pt-8 pb-16">
           <H2>Kontaktinformation</H2>
-          <a href="tel:+4530141614" class="font-bold font-poppins text-[18px] w-fit	">
+          <a href="tel:+4530141614" className="font-bold font-poppins text-[18px] w-fit	">
             +45 30 14 16 14
           </a>
-          <a href="mailto:kontakt@improvebusiness.dk" class="font-bold font-poppins text-[18px] w-fit	">
+          <a href="mailto:kontakt@improvebusiness.dk" className="font-bold font-poppins text-[18px] w-fit	">
             kontakt@improvebusiness.dk
           </a>
         </div>
