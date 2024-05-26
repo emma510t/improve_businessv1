@@ -1,31 +1,16 @@
-"use client";
-import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseclient";
 import EmployeeCard from "./ui/employeeCard";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
-export default function AboutCarousel({ type }) {
-  const [employees, setEmployees] = useState([]);
+export default async function AboutCarousel({ type }) {
+  const { data, error } = await supabase.from("ib-medarbejdere").select("*").eq("type", type);
 
-  useEffect(() => {
-    getEmployees();
-  }, []);
-
-  async function getEmployees() {
-    const { data } = await supabase.from("ib-medarbejdere").select("*");
-    setEmployees(data);
+  if (error || !data || data.length === 0) {
+    // Handle the error case (e.g., return a 404 page or a different component)
+    return <div>Error: Data not found</div>;
   }
 
-  // Filter employees based on the type prop
-  const filteredEmployees = employees.filter(
-    (employee) => employee.type === type
-  );
+  const filteredEmployees = data;
 
   return (
     <>
@@ -38,17 +23,8 @@ export default function AboutCarousel({ type }) {
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {filteredEmployees.map((employee) => (
-            <CarouselItem
-              className="md:basis-1/2 lg:basis-1/3 pl-2 md:pl-4 "
-              key={employee.id}
-            >
-              <EmployeeCard
-                fullname={employee.fullname}
-                title={employee.title}
-                company={employee.company}
-                type={employee.type}
-                img={employee.img}
-              />
+            <CarouselItem className="md:basis-1/2 lg:basis-1/3 pl-2 md:pl-4 " key={employee.id}>
+              <EmployeeCard fullname={employee.fullname} title={employee.title} company={employee.company} type={employee.type} img={employee.img} />
             </CarouselItem>
           ))}
         </CarouselContent>

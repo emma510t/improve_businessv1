@@ -1,28 +1,23 @@
-"use client";
-import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseclient";
 import { ProductCard } from "./ui/product-card";
 
-export default function ProductCardSection({
+export default async function ProductCardSection({
   parentCategory,
   cardVariant,
   desc,
   slugIcon,
 }) {
-  const [productCards, setProductCards] = useState([]);
+  const { data, error } = await supabase
+    .from("ib-product-cards")
+    .select("*")
+    .eq("parent", parentCategory);
 
-  useEffect(() => {
-    getProductCards(parentCategory);
-  }, [parentCategory]);
-
-  async function getProductCards(parent) {
-    const { data } = await supabase
-      .from("ib-product-cards")
-      .select("*")
-      .eq("parent", parent);
-
-    setProductCards(data);
+  if (error || !data || data.length === 0) {
+    // Handle the error case (e.g., return a 404 page or a different component)
+    return <div>Error: Data not found</div>;
   }
+
+  const productCards = data;
 
   return (
     <>

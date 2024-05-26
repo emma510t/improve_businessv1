@@ -1,6 +1,7 @@
 import SplitSection from "./splitSection";
 import SplitSectionChild from "./splitSectionChild";
 import { supabase } from "@/lib/supabaseclient";
+
 import { H2, P } from "./ui/fonts";
 import Icon from "./ui/icon";
 
