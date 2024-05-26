@@ -77,7 +77,7 @@ export default async function Page({ params }) {
           <ProductCardSection parentCategory={slugData.icon} />
         </div>
       </section>
-      <div className="snap-y snap-mandatory overflow-y-auto">
+      <div>
         <YdelseSection parent={slugData.icon} />
       </div>
       <section>

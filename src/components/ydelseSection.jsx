@@ -16,11 +16,11 @@ export default async function YdelseSection({ parent }) {
   const slugChildrenData = data;
 
   return (
-    <div>
+    <>
       <SplitSection>
         <SplitSectionChild className="bg-ibsilver-500 text-ibsilver-100">
           {slugChildrenData.map((child) => (
-            <div key={child.icon}>
+            <div key={child.icon} className="md:min-h-[calc(100vh-79px)]">
               <H2>{child.title}</H2>
               {child.content.map((content, index) => (
                 <P key={index}>{content.text}</P>
@@ -29,10 +29,18 @@ export default async function YdelseSection({ parent }) {
             </div>
           ))}
         </SplitSectionChild>
-        <SplitSectionChild img className="bg-ibgreen-400 content-center">
-          {/*   <Icon large iconVersion={child.icon} /> */}
+        <SplitSectionChild img sticky className="bg-ibgreen-400 flex justify-center items-center">
+          <div className="w-[150px] h-[150px] overflow-hidden relative">
+            {slugChildrenData.map((child) => (
+              <div key={child.icon} className="absolute">
+                <div className="relative">
+                  <Icon large iconVersion={child.icon} />
+                </div>
+              </div>
+            ))}
+          </div>
         </SplitSectionChild>
       </SplitSection>
-    </div>
+    </>
   );
 }
