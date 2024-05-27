@@ -16,8 +16,8 @@ export default function Home() {
           backgroundImage: `url(/img/forside-hero.jpeg)`,
         }}
       >
-        <div className="h-full w-full bg-herooverlay">
-          <div className="max-w-[1280px] w-full px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto pt-16 md:pt-32">
+        <div className="h-full w-full bg-herooverlay flex items-center">
+          <div className="max-w-[1280px] w-full px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
             <H1 className="text-ibsilver-100 max-w-[900px] sm:text-[40px] md:text-[50px] lg:text-[60px]">Bæredygtig fremgang gennem innovativ udvikling</H1>
             <p className="text-ibsilver-100 text-[20px] md:text-[24px] lg:text-[26px] max-w-[585px] mt-4">Fremtidssikrede strategier og løsninger for dig og din virksomhed</p>
             <Link href="/kontakt" className="mt-16 w-fit h-fit">
