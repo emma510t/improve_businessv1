@@ -38,8 +38,6 @@ export default async function CasePage({ params }) {
 
   const statements = slugData.statements || [];
 
-  console.log(statements);
-
   return (
     <>
       <div className="bg-ibsilver-600 pb-8 md:pb-16 pt-[25px] md:pt-[40px] px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10">

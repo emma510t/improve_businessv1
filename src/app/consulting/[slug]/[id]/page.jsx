@@ -44,14 +44,11 @@ export default async function page({ params }) {
 
   const renderContent = (content) => {
     if (Array.isArray(content)) {
-      console.log("Content:", content);
       return content.map((item, index) => <P key={index}>{item.text}</P>);
     } else if (typeof content === "string") {
-      console.log("string: ", content);
       // Split string into paragraphs based on line breaks if needed
       return content.split("\r\n").map((line, index) => <P key={index}>{line}</P>);
     } else {
-      console.log("inv:", content);
       return <p>Invalid content format</p>;
     }
   };
