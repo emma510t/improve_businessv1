@@ -41,7 +41,20 @@ export default async function page({ params }) {
   }
 
   const idData = data[0];
-  console.log(idData);
+
+  const renderContent = (content) => {
+    if (Array.isArray(content)) {
+      console.log("Content:", content);
+      return content.map((item, index) => <P key={index}>{item.text}</P>);
+    } else if (typeof content === "string") {
+      console.log("string: ", content);
+      // Split string into paragraphs based on line breaks if needed
+      return content.split("\r\n").map((line, index) => <P key={index}>{line}</P>);
+    } else {
+      console.log("inv:", content);
+      return <p>Invalid content format</p>;
+    }
+  };
 
   return (
     <>
@@ -56,10 +69,11 @@ export default async function page({ params }) {
           >
             <PageTagBreadcrumb grandParent={"Consulting"} grandParentHRef={"/consulting"} parent={idData.parent} parentHRef={`/consulting/${params.slug}`} currentPage={idData.title} />
             <H2>{idData.title}</H2>
-            <P>{idData.ydelse_content_1}</P>
-            {/* {idData.ydelse_content_1.map((content, index) => (
-            <P key={index}>{content.text}</P>
-          ))} */}
+            {renderContent(idData.ydelse_content_1)}
+
+            {/*  {idData.ydelse_content_1.map((content, index) => (
+              <P key={index}>{content.text}</P>
+            ))} */}
             <Link className="hidden md:block md:mr-auto" href="/kontakt">
               <Button hasArrow>Kontakt os</Button>
             </Link>
@@ -68,19 +82,19 @@ export default async function page({ params }) {
           {idData.ydelse_headline_2 && idData.ydelse_content_2 && (
             <div className="pt-5">
               <H3>{idData.ydelse_headline_2}</H3>
-              <P>{idData.ydelse_content_2}</P>
+              {renderContent(idData.ydelse_content_2)}
               {/* {idData.ydelse_content_2.map((content, index) => (
-            <P key={index}>{content.text}</P>
-          ))} */}
+                <P key={index}>{content.text}</P>
+              ))} */}
             </div>
           )}
           {idData.ydelse_headline_3 && idData.ydelse_content_3 && (
             <div className="pt-5">
               <H3>{idData.ydelse_headline_3}</H3>
-              <P>{idData.ydelse_content_3}</P>
-              {/* {idData.ydelse_content_3.map((content, index) => (
-            <P key={index}>{content.text}</P>
-          ))} */}
+              {renderContent(idData.ydelse_content_3)}
+              {/*   {idData.ydelse_content_3.map((content, index) => (
+                <P key={index}>{content.text}</P>
+              ))} */}
             </div>
           )}
           <div className="pb-8 md:pb-12 pt-[25px] md:pt-[40px] max-w-[1280px] w-full mx-auto">
