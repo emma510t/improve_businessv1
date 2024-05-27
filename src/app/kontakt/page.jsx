@@ -14,13 +14,9 @@ export default function kontakt() {
     <>
       <SplitSection>
         <SplitSectionChild img className="order-last">
-          <Image
-            src="/img/contact-hero.webp"
-            alt="Improve Business' kontorbygning"
-            width={1920}
-            height={1080}
-            className=" md:w-full md:h-full max-h-[380px] object-cover md:max-h-none bg-ibblue-400"
-          />
+          <div className="md:w-full md:h-full max-h-[380px] object-cover md:max-h-none bg-ibblue-400 flex pt-3">
+            <Image src="/img/kontakt-hero.webp" alt="Improve Business' kontorbygning" width={1920} height={1080} className="mt-auto" />
+          </div>
         </SplitSectionChild>
         <SplitSectionChild>
           <PageTagBreadcrumb currentPage={"Kontakt"} />
