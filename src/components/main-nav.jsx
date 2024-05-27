@@ -22,16 +22,25 @@ import {
 } from "@/components/ui/accordion";
 
 function MainNav({ menuItems }) {
+  const [openAccordions, setOpenAccordions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => {
+    setOpenAccordions([]);
     setIsOpen((prevState) => !prevState);
   };
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       toggleDrawer();
     }
   };
+
+  // const handleLinkClick = (e) => {
+  //   toggleDrawer();
+  //   setOpenAccordions([]);
+  //   console.log("Handlelink kørt", openAccordions);
+  // };
 
   useEffect(() => {
     if (isOpen) {
@@ -180,6 +189,7 @@ function MainNav({ menuItems }) {
                     <AccordionTrigger
                       link="/consulting"
                       toggleDrawer={toggleDrawer}
+                      setOpenAccordions={setOpenAccordions}
                       className="p-4 border-t-2 border-b border-ibsilver-400 text-2xl font-semibold"
                     >
                       Consulting
@@ -200,6 +210,7 @@ function MainNav({ menuItems }) {
                               <AccordionTrigger
                                 link={`/consulting/${menuItem.url}`}
                                 toggleDrawer={toggleDrawer}
+                                setOpenAccordions={setOpenAccordions}
                                 className="p-2 text-lg"
                               >
                                 {menuItem.title}

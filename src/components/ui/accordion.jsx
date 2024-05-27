@@ -19,17 +19,26 @@ const AccordionItem = React.forwardRef(({ className, ...props }, ref) => (
 AccordionItem.displayName = "AccordionItem";
 
 const AccordionTrigger = React.forwardRef(
-  ({ className, toggleDrawer, children, link, ...props }, ref) => {
+  (
+    { className, toggleDrawer, setOpenAccordions, children, link, ...props },
+    ref
+  ) => {
     const handleTextClick = (e) => {
       if (link) {
         e.stopPropagation(); // Prevent triggering the accordion toggle
         window.location.href = link; // Redirect to the link if it's provided
         toggleDrawer();
+        setOpenAccordions([]);
       }
     };
 
     const handleChevronClick = (e) => {
       e.stopPropagation(); // Prevent triggering the text click
+      setOpenAccordions((prevOpenAccordions) =>
+        prevOpenAccordions.includes(value)
+          ? prevOpenAccordions.filter((item) => item !== value)
+          : [...prevOpenAccordions, value]
+      );
     };
 
     return (
