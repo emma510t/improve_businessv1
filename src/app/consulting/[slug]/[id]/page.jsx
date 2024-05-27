@@ -47,7 +47,9 @@ export default async function page({ params }) {
       return content.map((item, index) => <P key={index}>{item.text}</P>);
     } else if (typeof content === "string") {
       // Split string into paragraphs based on line breaks if needed
-      return content.split("\r\n").map((line, index) => <P key={index}>{line}</P>);
+      return content
+        .split("\r\n")
+        .map((line, index) => <P key={index}>{line}</P>);
     } else {
       return <p>Invalid content format</p>;
     }
@@ -58,7 +60,7 @@ export default async function page({ params }) {
       <SplitSection>
         <SplitSectionChild img className="order-last">
           <Image
-            className="md:w-full md:h-full max-h-[380px] object-cover md:max-h-none bg-ibsilver-400"
+            className="md:w-full md:h-full max-h-[340px] object-cover md:max-h-none bg-ibsilver-400"
             src={`/img/ydelse/${idData.icon}.jpg`}
             alt={`${idData.title} billede`}
             width={800}
@@ -70,7 +72,13 @@ export default async function page({ params }) {
             className="md:pb-7
            "
           >
-            <PageTagBreadcrumb grandParent={"Consulting"} grandParentHRef={"/consulting"} parent={idData.parent} parentHRef={`/consulting/${params.slug}`} currentPage={idData.title} />
+            <PageTagBreadcrumb
+              grandParent={"Consulting"}
+              grandParentHRef={"/consulting"}
+              parent={idData.parent}
+              parentHRef={`/consulting/${params.slug}`}
+              currentPage={idData.title}
+            />
             <H2>{idData.title}</H2>
             {renderContent(idData.ydelse_content_1)}
 
@@ -102,7 +110,10 @@ export default async function page({ params }) {
           )}
           <div className="pb-8 md:pb-12 pt-[25px] md:pt-[40px] max-w-[1280px] w-full mx-auto">
             <H2 className="">Se vores andre ekspertiseområder</H2>
-            <ProductCardSection slugIcon={idData.icon} parentCategory={idData.parent} />
+            <ProductCardSection
+              slugIcon={idData.icon}
+              parentCategory={idData.parent}
+            />
           </div>
         </SplitSectionChild>
       </SplitSection>

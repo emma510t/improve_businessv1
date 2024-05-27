@@ -12,8 +12,17 @@ export default function Footer() {
               <br /> til bæredygtig udvikling.
             </p>
             <div className="flex gap-3">
-              <a href="https://www.linkedin.com/company/improvebusinessdk/" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+              <a
+                href="https://www.linkedin.com/company/improvebusinessdk/"
+                target="_blank"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="25"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                >
                   <g clipPath="url(#clip0_348_2483)">
                     <path
                       d="M4 6.53296C4 6.00253 4.21071 5.49382 4.58579 5.11875C4.96086 4.74367 5.46957 4.53296 6 4.53296H18C18.5304 4.53296 19.0391 4.74367 19.4142 5.11875C19.7893 5.49382 20 6.00253 20 6.53296V18.533C20 19.0634 19.7893 19.5721 19.4142 19.9472C19.0391 20.3222 18.5304 20.533 18 20.533H6C5.46957 20.533 4.96086 20.3222 4.58579 19.9472C4.21071 19.5721 4 19.0634 4 18.533V6.53296Z"
@@ -23,9 +32,27 @@ export default function Footer() {
                       strokeLinejoin="round"
                     />
 
-                    <path d="M8 11.533V16.533" stroke="#FAF8FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M8 8.53296V8.54296" stroke="#FAF8FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M12 16.533V11.533" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path
+                      d="M8 11.533V16.533"
+                      stroke="#FAF8FF"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M8 8.53296V8.54296"
+                      stroke="#FAF8FF"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M12 16.533V11.533"
+                      stroke="white"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
 
                     <path
                       d="M16 16.533V13.533C16 13.0025 15.7893 12.4938 15.4142 12.1187C15.0391 11.7437 14.5304 11.533 14 11.533C13.4696 11.533 12.9609 11.7437 12.5858 12.1187C12.2107 12.4938 12 13.0025 12 13.533"
@@ -37,14 +64,28 @@ export default function Footer() {
                   </g>
                   <defs>
                     <clipPath id="clip0_348_2483">
-                      <rect width="24" height="24" fill="white" transform="translate(0 0.532959)" />
+                      <rect
+                        width="24"
+                        height="24"
+                        fill="white"
+                        transform="translate(0 0.532959)"
+                      />
                     </clipPath>
                   </defs>
                 </svg>
               </a>
 
-              <a href="https://www.instagram.com/improvebusinessacademy/" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+              <a
+                href="https://www.instagram.com/improvebusinessacademy/"
+                target="_blank"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="25"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                >
                   <g clipPath="url(#clip0_348_2484)">
                     <path
                       d="M4 8.53296C4 7.47209 4.42143 6.45468 5.17157 5.70453C5.92172 4.95439 6.93913 4.53296 8 4.53296H16C17.0609 4.53296 18.0783 4.95439 18.8284 5.70453C19.5786 6.45468 20 7.47209 20 8.53296V16.533C20 17.5938 19.5786 18.6112 18.8284 19.3614C18.0783 20.1115 17.0609 20.533 16 20.533H8C6.93913 20.533 5.92172 20.1115 5.17157 19.3614C4.42143 18.6112 4 17.5938 4 16.533V8.53296Z"
@@ -61,11 +102,22 @@ export default function Footer() {
                       strokeLinejoin="round"
                     />
 
-                    <path d="M16.5 8.03296V8.04296" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path
+                      d="M16.5 8.03296V8.04296"
+                      stroke="white"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </g>
                   <defs>
                     <clipPath id="clip0_348_2484">
-                      <rect width="24" height="24" fill="white" transform="translate(0 0.532959)" />
+                      <rect
+                        width="24"
+                        height="24"
+                        fill="white"
+                        transform="translate(0 0.532959)"
+                      />
                     </clipPath>
                   </defs>
                 </svg>
@@ -81,7 +133,9 @@ export default function Footer() {
           </div>
           <div>
             <a href="tel:4530141614">+ 45 30 14 16 14</a>
-            <a href="mailto:kontakt@improvebusiness.dk​">kontakt@improvebusiness.dk​</a>
+            <a href="mailto:kontakt@improvebusiness.dk​">
+              kontakt@improvebusiness.dk​
+            </a>
           </div>
           <p className="text-lg"></p>
         </div>
@@ -122,7 +176,7 @@ export default function Footer() {
       <div className="flex gap-5 text-ibsilver-300 text-base mx-auto">
         <p className="text-base">© Improve Business 2024</p>
         <p className="text-base">|</p>
-        <p className="text-base">Privatlivspolitik</p>
+        <p className="text-base cursor-pointer">Privatlivspolitik</p>
       </div>
     </footer>
   );

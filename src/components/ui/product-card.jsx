@@ -46,7 +46,10 @@ const ProductCard = React.forwardRef(
     let hasDesc = desc ? true : false;
     let descStyel = hasDesc ? " sm:aspect-[1/2] lg:aspect-[11/20] h-full" : "";
     return (
-      <Link href={`/consulting/${url}`}>
+      <Link
+        href={`/consulting/${url}`}
+        className="focus:outline-none focus:ring-2 focus:ring-ibgreen-400 focus:ring-offset-2 focus:ring-offset-transparent"
+      >
         <Comp
           className={cn(cardVariants({ variant, size, className })) + descStyel}
           ref={ref}

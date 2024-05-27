@@ -36,12 +36,6 @@ function MainNav({ menuItems }) {
     }
   };
 
-  // const handleLinkClick = (e) => {
-  //   toggleDrawer();
-  //   setOpenAccordions([]);
-  //   console.log("Handlelink kørt", openAccordions);
-  // };
-
   useEffect(() => {
     if (isOpen) {
       // Prevent vertical scrolling when the drawer is open
@@ -68,8 +62,8 @@ function MainNav({ menuItems }) {
             <NavigationMenuTrigger>
               <MenuItem linkref="/consulting">Consulting</MenuItem>
             </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <nav className="flex flex-wrap justify-between gap-4 bg-ibsilver-600 text-ibsilver-100 px-10 py-11 w-full">
+            <NavigationMenuContent className=" bg-ibsilver-600 flex justify-center">
+              <nav className="flex flex-wrap justify-between gap-4 text-ibsilver-100 px-10 py-11 w-full max-w-[1280px]">
                 {menuItems
                   .filter((menuItem) => menuItem.parent === "consulting")
                   .sort((a, b) => a.id - b.id)
