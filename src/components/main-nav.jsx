@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
-import React from "react";
+import { useEffect, useState } from "react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/accordion";
 
 function MainNav({ menuItems }) {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
   };
@@ -32,6 +32,21 @@ function MainNav({ menuItems }) {
       toggleDrawer();
     }
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      // Prevent vertical scrolling when the drawer is open
+      document.body.style.overflowY = "hidden";
+    } else {
+      // Re-enable vertical scrolling when the drawer is closed
+      document.body.style.overflowY = "auto";
+    }
+
+    // Clean up on unmount
+    return () => {
+      document.body.style.overflowY = "auto";
+    };
+  }, [isOpen]);
 
   return (
     <>
@@ -130,9 +145,9 @@ function MainNav({ menuItems }) {
             open={isOpen}
             onClose={toggleDrawer}
             direction="right"
-            style={{ width: "100vw" }}
+            style={{ width: "100vw", height: "100%", overflow: "auto" }}
           >
-            <div className="h-full flex flex-col bg-ibsilver-500 text-ibsilver-100">
+            <div className="flex flex-col min-h-[100vh] bg-ibsilver-500 text-ibsilver-100">
               <div className="flex m-6 justify-end">
                 <svg
                   onKeyDown={handleKeyDown}
