@@ -6,7 +6,7 @@ import { H2, P } from "./ui/fonts";
 import Icon from "./ui/icon";
 import Link from "next/link";
 
-export default async function YdelseSection({ parent }) {
+export default async function YdelseSection({ parent, title }) {
   const { data, error } = await supabase.from("ib-product-cards").select("*").eq("parent", parent);
 
   if (error || !data || data.length === 0) {
@@ -30,20 +30,19 @@ export default async function YdelseSection({ parent }) {
                 <Button variant="ghost" size="noPadding" hasArrow>
                   Læs mere
                 </Button>
+                <div className="flex justify-center pb-7 pt-5">
+                  <Icon large iconVersion={child.icon} />
+                </div>
               </Link>
             </div>
           ))}
         </SplitSectionChild>
-        <SplitSectionChild img sticky className="bg-ibgreen-400 flex justify-center items-center">
-          <div className="w-[150px] h-[150px] overflow-hidden relative">
-            {slugChildrenData.map((child) => (
-              <div key={child.icon} className="absolute">
-                <div className="relative">
-                  <Icon large iconVersion={child.icon} />
-                </div>
-              </div>
-            ))}
-          </div>
+        <SplitSectionChild sticky className="bg-ibgreen-400 flex items-center">
+          <h2 className="font-medium text-base md:text-3xl">
+            {title}s-
+            <br />
+            <span className="font-bold text-[32px]/[1.4] pb-4 sm:text-4xl md:text-6xl lg:text-8xl xl:text-8xl">ydelser</span>
+          </h2>
         </SplitSectionChild>
       </SplitSection>
     </>
