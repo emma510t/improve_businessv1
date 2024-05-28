@@ -9,7 +9,7 @@ import { Textarea } from "./ui/textarea";
 import { supabase } from "../lib/supabaseclient";
 import CheckboxTile from "./ui/checkboxtile";
 import FormError from "./ui/formError";
-import { H3, P } from "./ui/fonts";
+import { P } from "./ui/fonts";
 import Link from "next/link";
 
 const areas = [
