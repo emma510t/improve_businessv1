@@ -48,8 +48,8 @@ export default function FormSetup() {
 
   const descriptionLength = useWatch({
     control,
-    name: "description", // without supply name will watch the entire form, or ['firstName', 'lastName'] to watch both
-    defaultValue: "default", // default value before the render
+    name: "description",
+    defaultValue: "",
   });
 
   const [checkedItems, setCheckedItems] = useState({});
