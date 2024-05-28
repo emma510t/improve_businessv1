@@ -71,7 +71,7 @@ export default async function Page({ params }) {
             className="md:w-full md:h-full max-h-[340px] object-cover md:max-h-none bg-ibsilver-400"
           />
         </SplitSectionChild>
-        <SplitSectionChild className="bg-ibsilver-500 text-ibsilver-100">
+        <SplitSectionChild className="bg-ibsilver-600 text-ibsilver-100">
           <PageTagBreadcrumb
             dark
             parent={"Consulting"}

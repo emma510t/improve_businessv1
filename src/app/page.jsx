@@ -122,7 +122,7 @@ export default function Home() {
             </P>
           </div>
           <Link href="/academy" className="md:mt-auto w-fit h-fit mt-4">
-            <Button variant="ghost" size="noPadding" hasArrow>
+            <Button variant="ghostWhite" size="noPadding" hasArrow>
               Se hvad vi tilbyder
             </Button>
           </Link>
