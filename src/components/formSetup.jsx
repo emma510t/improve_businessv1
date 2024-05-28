@@ -185,7 +185,7 @@ export default function FormSetup() {
               </div>
               {/* {errors.name && <span>This field is required</span>} */}
               <div className="mt-4">
-                <Button hasArrow type="submit" disabled={submitting}>
+                <Button hasArrow type="submit" disabled={submitting} tabindex>
                   {submitting ? "Sender..." : "Send"}
                 </Button>
               </div>
