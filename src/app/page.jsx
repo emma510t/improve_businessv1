@@ -13,7 +13,7 @@ export default function Home() {
       <section
         className="h-[60vh] md:h-[75vh] bg-cover bg-center bg-herooverlay relative"
         style={{
-          backgroundImage: `url(/img/forside-hero.jpeg)`,
+          backgroundImage: `url(/img/forside-hero.webp)`,
         }}
       >
         <div className="h-full w-full bg-herooverlay flex items-center">
@@ -61,7 +61,7 @@ export default function Home() {
       <SplitSection>
         <SplitSectionChild img>
           <Image
-            src="/img/forside-woman-presentation.jpeg"
+            src="/img/forside-woman-presentation.webp"
             alt="kvinde holder præsentation"
             width={768}
             height={750}
@@ -94,7 +94,7 @@ export default function Home() {
       <SplitSection>
         <SplitSectionChild img className="order-last">
           <Image
-            src="/img/forside-man-with-coffee.jpeg"
+            src="/img/forside-man-with-coffee.webp"
             alt="mand sidder ved bord"
             width={768}
             height={750}

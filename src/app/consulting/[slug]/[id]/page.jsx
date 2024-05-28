@@ -61,7 +61,7 @@ export default async function page({ params }) {
         <SplitSectionChild img className="order-last">
           <Image
             className="md:w-full md:h-full max-h-[340px] object-cover md:max-h-none bg-ibsilver-400"
-            src={`/img/ydelse/${idData.icon}.jpg`}
+            src={`/img/ydelse/${idData.icon}.webp`}
             alt={`${idData.title} billede`}
             width={800}
             height={800}

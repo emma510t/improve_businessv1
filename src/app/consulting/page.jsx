@@ -98,7 +98,7 @@ export default function consulting() {
       <SplitSection>
         <SplitSectionChild img>
           <Image
-            src="/img/consulting-potentiale.jpg"
+            src="/img/consulting-potentiale.webp"
             alt="To personer taler ved bord"
             width={1920}
             height={1080}
