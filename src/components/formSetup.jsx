@@ -173,14 +173,14 @@ export default function FormSetup() {
                       message: "Beskeden er for kort",
                     },
                     maxLength: {
-                      value: 250,
+                      value: 500,
                       message: "Beskeden er for lang",
                     },
                   })}
                 />
                 <div className="flex">
                   {errors.description && <FormError>{errors.description.message}</FormError>}
-                  <p className={`ml-auto text-xs  mt-2 ${descriptionLength.length > 250 ? "text-ibred-400" : "text-ibsilver-400"}`}>{descriptionLength.length}/250</p>
+                  <p className={`ml-auto text-xs  mt-2 ${descriptionLength.length > 500 ? "text-ibred-400" : "text-ibsilver-400"}`}>{descriptionLength.length}/500</p>
                 </div>
               </div>
               {/* {errors.name && <span>This field is required</span>} */}
