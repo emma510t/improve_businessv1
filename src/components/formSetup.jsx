@@ -10,6 +10,7 @@ import { supabase } from "../lib/supabaseclient";
 import CheckboxTile from "./ui/checkboxtile";
 import FormError from "./ui/formError";
 import { H3, P } from "./ui/fonts";
+import Link from "next/link";
 
 const areas = [
   {
@@ -68,19 +69,21 @@ export default function FormSetup() {
       setMail(data.email);
 
       // Send form data to SupaBase
-      const { data: formData, error } = await supabase.from("ib-contact-form").insert([
-        {
-          // Map form data to your table columns
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          description: data.description,
-          area: Object.keys(checkedItems)
-            .filter((key) => checkedItems[key])
-            .join(", "),
-          // Add other columns as needed
-        },
-      ]);
+      const { data: formData, error } = await supabase
+        .from("ib-contact-form")
+        .insert([
+          {
+            // Map form data to your table columns
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            description: data.description,
+            area: Object.keys(checkedItems)
+              .filter((key) => checkedItems[key])
+              .join(", "),
+            // Add other columns as needed
+          },
+        ]);
 
       if (error) {
         throw error;
@@ -98,21 +101,42 @@ export default function FormSetup() {
       <Form>
         {formSubmitted ? (
           <>
-            <h2 className="font-bold text-2xl pb-4">Tak for din henvendelse!</h2>
+            <h2 className="font-bold text-2xl pb-4">
+              Tak for din henvendelse!
+            </h2>
             <P>
-              Vi har modtaget din information og kontakter dig inden for 1 hverdag. Du har modtaget en bekræftelse på <span className="text-ibgreen-400">{mail}</span>
+              Vi har modtaget din information og kontakter dig inden for 1
+              hverdag. Du har modtaget en bekræftelse på{" "}
+              <span className="text-ibgreen-400">{mail}</span>
             </P>
-            <Button>Tilbage til forsiden</Button>
+            <Link href="/">
+              <Button>Tilbage til forsiden</Button>
+            </Link>
           </>
         ) : (
           <>
-            <P>Vi er klar til at hjælpe jer. Udfyld formularen og vi vender tilbage snarest!</P>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+            <P>
+              Vi er klar til at hjælpe jer. Udfyld formularen og vi vender
+              tilbage snarest!
+            </P>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col gap-5"
+            >
               <fieldset>
-                <legend className="font-poppins text-ibsilver-600 text-[17px]">Hvad kan vi hjælpe dig med?</legend>
+                <legend className="font-poppins text-ibsilver-600 text-[17px]">
+                  Hvad kan vi hjælpe dig med?
+                </legend>
                 <div className="mt-3.5 flex gap-2.5 flex-wrap">
                   {areas.map((area) => (
-                    <CheckboxTile {...register(area.name)} key={area.key} checked={checkedItems[area.key] || false} onChange={(isChecked) => handleCheckboxChange(area.key, isChecked)}>
+                    <CheckboxTile
+                      {...register(area.name)}
+                      key={area.key}
+                      checked={checkedItems[area.key] || false}
+                      onChange={(isChecked) =>
+                        handleCheckboxChange(area.key, isChecked)
+                      }
+                    >
                       {area.name}
                     </CheckboxTile>
                   ))}
@@ -125,9 +149,15 @@ export default function FormSetup() {
                     id="name"
                     {...register("name", { required: true })}
                     aria-invalid={errors.name ? "true" : "false"}
-                    className={`mt-1.5 ${errors.name ? "border-ibred-400 border-2" : "border-ibsilver-500"}`}
+                    className={`mt-1.5 ${
+                      errors.name
+                        ? "border-ibred-400 border-2"
+                        : "border-ibsilver-500"
+                    }`}
                   />
-                  {errors.name?.type === "required" && <FormError>Indtast navn</FormError>}
+                  {errors.name?.type === "required" && (
+                    <FormError>Indtast navn</FormError>
+                  )}
                 </div>
                 <div className="flex gap-y-5 flex-col gap-x-2.5 sm:flex-row sm:flex-wrap w-full min-[1018px]:grid min-[1018px]:grid-cols-2 min-[1500px]:col-span-2">
                   <div className="w-full">
@@ -137,9 +167,15 @@ export default function FormSetup() {
                       type="email"
                       {...register("email", { required: true })}
                       aria-invalid={errors.email ? "true" : "false"}
-                      className={`mt-1.5 ${errors.email ? "border-ibred-400 border-2" : "border-ibsilver-500"}`}
+                      className={`mt-1.5 ${
+                        errors.email
+                          ? "border-ibred-400 border-2"
+                          : "border-ibsilver-500"
+                      }`}
                     />
-                    {errors.email?.type === "required" && <FormError>Indtast korrekt e-mail</FormError>}
+                    {errors.email?.type === "required" && (
+                      <FormError>Indtast korrekt e-mail</FormError>
+                    )}
                   </div>
                   <div className="w-full">
                     <Label htmlFor="phone">Telefonnummer*</Label>
@@ -154,16 +190,26 @@ export default function FormSetup() {
                         },
                       })}
                       aria-invalid={errors.phone ? "true" : "false"}
-                      className={`mt-1.5 ${errors.phone ? "border-ibred-400 border-2" : "border-ibsilver-500"}`}
+                      className={`mt-1.5 ${
+                        errors.phone
+                          ? "border-ibred-400 border-2"
+                          : "border-ibsilver-500"
+                      }`}
                     />
-                    {errors.phone && <FormError>{errors.phone.message}</FormError>}
+                    {errors.phone && (
+                      <FormError>{errors.phone.message}</FormError>
+                    )}
                   </div>
                 </div>
               </div>
               <div>
                 <Label htmlFor="description">Besked*</Label>
                 <Textarea
-                  className={`resize-none h-32 mt-1.5 ${errors.description ? "border-ibred-400 border-2" : "border-ibsilver-500"} 	`}
+                  className={`resize-none h-32 mt-1.5 ${
+                    errors.description
+                      ? "border-ibred-400 border-2"
+                      : "border-ibsilver-500"
+                  } 	`}
                   id="description"
                   resize-none
                   {...register("description", {
@@ -179,8 +225,18 @@ export default function FormSetup() {
                   })}
                 />
                 <div className="flex">
-                  {errors.description && <FormError>{errors.description.message}</FormError>}
-                  <p className={`ml-auto text-xs  mt-2 ${descriptionLength.length > 500 ? "text-ibred-400" : "text-ibsilver-400"}`}>{descriptionLength.length}/500</p>
+                  {errors.description && (
+                    <FormError>{errors.description.message}</FormError>
+                  )}
+                  <p
+                    className={`ml-auto text-xs  mt-2 ${
+                      descriptionLength.length > 500
+                        ? "text-ibred-400"
+                        : "text-ibsilver-400"
+                    }`}
+                  >
+                    {descriptionLength.length}/500
+                  </p>
                 </div>
               </div>
               {/* {errors.name && <span>This field is required</span>} */}
