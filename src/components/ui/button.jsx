@@ -54,6 +54,7 @@ const Button = React.forwardRef(
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
+        tabIndex={-1}
         {...props}
       >
         {children}

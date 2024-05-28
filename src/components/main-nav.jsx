@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
-import React from "react";
+import { useEffect, useState } from "react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -22,16 +22,34 @@ import {
 } from "@/components/ui/accordion";
 
 function MainNav({ menuItems }) {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [openAccordions, setOpenAccordions] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => {
+    setOpenAccordions([]);
     setIsOpen((prevState) => !prevState);
   };
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       toggleDrawer();
     }
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      // Prevent vertical scrolling when the drawer is open
+      document.body.style.overflowY = "hidden";
+    } else {
+      // Re-enable vertical scrolling when the drawer is closed
+      document.body.style.overflowY = "auto";
+    }
+
+    // Clean up on unmount
+    return () => {
+      document.body.style.overflowY = "auto";
+    };
+  }, [isOpen]);
 
   return (
     <>
@@ -44,8 +62,8 @@ function MainNav({ menuItems }) {
             <NavigationMenuTrigger>
               <MenuItem linkref="/consulting">Consulting</MenuItem>
             </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <nav className="flex flex-wrap justify-between gap-4 bg-ibsilver-600 text-ibsilver-100 px-10 py-11 w-full">
+            <NavigationMenuContent className=" bg-ibsilver-600 flex justify-center">
+              <nav className="flex flex-wrap justify-between gap-4 text-ibsilver-100 px-10 py-11 w-full max-w-[1280px]">
                 {menuItems
                   .filter((menuItem) => menuItem.parent === "consulting")
                   .sort((a, b) => a.id - b.id)
@@ -130,9 +148,9 @@ function MainNav({ menuItems }) {
             open={isOpen}
             onClose={toggleDrawer}
             direction="right"
-            style={{ width: "100vw" }}
+            style={{ width: "100vw", height: "100%", overflow: "auto" }}
           >
-            <div className="h-full flex flex-col bg-ibsilver-500 text-ibsilver-100">
+            <div className="flex flex-col min-h-[100vh] bg-ibsilver-500 text-ibsilver-100">
               <div className="flex m-6 justify-end">
                 <svg
                   onKeyDown={handleKeyDown}
@@ -165,6 +183,7 @@ function MainNav({ menuItems }) {
                     <AccordionTrigger
                       link="/consulting"
                       toggleDrawer={toggleDrawer}
+                      setOpenAccordions={setOpenAccordions}
                       className="p-4 border-t-2 border-b border-ibsilver-400 text-2xl font-semibold"
                     >
                       Consulting
@@ -185,6 +204,7 @@ function MainNav({ menuItems }) {
                               <AccordionTrigger
                                 link={`/consulting/${menuItem.url}`}
                                 toggleDrawer={toggleDrawer}
+                                setOpenAccordions={setOpenAccordions}
                                 className="p-2 text-lg"
                               >
                                 {menuItem.title}

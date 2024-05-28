@@ -61,19 +61,21 @@ export default function FormSetup() {
       setMail(data.email);
 
       // Send form data to SupaBase
-      const { data: formData, error } = await supabase.from("ib-contact-form").insert([
-        {
-          // Map form data to your table columns
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          description: data.description,
-          area: Object.keys(checkedItems)
-            .filter((key) => checkedItems[key])
-            .join(", "),
-          // Add other columns as needed
-        },
-      ]);
+      const { data: formData, error } = await supabase
+        .from("ib-contact-form")
+        .insert([
+          {
+            // Map form data to your table columns
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            description: data.description,
+            area: Object.keys(checkedItems)
+              .filter((key) => checkedItems[key])
+              .join(", "),
+            // Add other columns as needed
+          },
+        ]);
 
       if (error) {
         throw error;
@@ -91,37 +93,69 @@ export default function FormSetup() {
       <Form>
         {formSubmitted ? (
           <>
-            <h2 className="font-bold text-2xl pb-4">Tak for din henvendelse!</h2>
+            <h2 className="font-bold text-2xl pb-4">
+              Tak for din henvendelse!
+            </h2>
             <P>
-              Vi har modtaget din information og kontakter dig inden for 1 hverdag. Du har modtaget en bekræftelse på <span className="text-ibgreen-400">{mail}</span>
+              Vi har modtaget din information og kontakter dig inden for 1
+              hverdag. Du har modtaget en bekræftelse på{" "}
+              <span className="text-ibgreen-400">{mail}</span>
             </P>
             <Button>Tilbage til forsiden</Button>
           </>
         ) : (
           <>
-            <P>Vi er klar til at hjælpe jer. Udfyld formularen og vi vender tilbage snarest!</P>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+            <P>
+              Vi er klar til at hjælpe jer. Udfyld formularen og vi vender
+              tilbage snarest!
+            </P>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col gap-4"
+            >
               <fieldset>
-                <legend className="font-poppins text-ibsilver-600 text-[17px]">Hvad kan vi hjælpe dig med?</legend>
+                <legend className="font-poppins text-ibsilver-600 text-[17px]">
+                  Hvad kan vi hjælpe dig med?
+                </legend>
                 <div className="flex gap-2.5 mt-4 flex-wrap">
                   {areas.map((area) => (
-                    <CheckboxTile {...register(area.name)} key={area.key} checked={checkedItems[area.key] || false} onChange={(isChecked) => handleCheckboxChange(area.key, isChecked)}>
+                    <CheckboxTile
+                      {...register(area.name)}
+                      key={area.key}
+                      checked={checkedItems[area.key] || false}
+                      onChange={(isChecked) =>
+                        handleCheckboxChange(area.key, isChecked)
+                      }
+                    >
                       {area.name}
                     </CheckboxTile>
                   ))}
                 </div>
               </fieldset>
               <div className="grid md:flex md:gap-2.5 md:flex-wrap">
-                <div>
+                <div className="min-[996px]:max-[1520px]:w-[450px]">
                   <Label htmlFor="name">Navn*</Label>
-                  <Input id="name" {...register("name", { required: true })} aria-invalid={errors.name ? "true" : "false"} />
-                  {errors.name?.type === "required" && <FormError>Indtast navn</FormError>}
+                  <Input
+                    id="name"
+                    {...register("name", { required: true })}
+                    aria-invalid={errors.name ? "true" : "false"}
+                  />
+                  {errors.name?.type === "required" && (
+                    <FormError>Indtast navn</FormError>
+                  )}
                 </div>
                 <div className="md:flex md:gap-2.5 md:flex-wrap">
                   <div className="mt-4 md:mt-0">
                     <Label htmlFor="email">E-mail*</Label>
-                    <Input id="email" type="email" {...register("email", { required: true })} aria-invalid={errors.email ? "true" : "false"} />
-                    {errors.email?.type === "required" && <FormError>Indtast korrekt e-mail</FormError>}
+                    <Input
+                      id="email"
+                      type="email"
+                      {...register("email", { required: true })}
+                      aria-invalid={errors.email ? "true" : "false"}
+                    />
+                    {errors.email?.type === "required" && (
+                      <FormError>Indtast korrekt e-mail</FormError>
+                    )}
                   </div>
                   <div className="mt-4 md:mt-0">
                     <Label htmlFor="phone">Telefonnummer*</Label>
@@ -137,14 +171,18 @@ export default function FormSetup() {
                       })}
                       aria-invalid={errors.phone ? "true" : "false"}
                     />
-                    {errors.phone && <FormError>{errors.phone.message}</FormError>}
+                    {errors.phone && (
+                      <FormError>{errors.phone.message}</FormError>
+                    )}
                   </div>
                 </div>
               </div>
               <div>
                 <Label htmlFor="description">Besked*</Label>
                 <Textarea
+                  className="resize-none	"
                   id="description"
+                  resize-none
                   {...register("description", {
                     required: "Skriv en besked",
                     minLength: {
@@ -157,7 +195,9 @@ export default function FormSetup() {
                     },
                   })}
                 />
-                {errors.description && <FormError>{errors.description.message}</FormError>}
+                {errors.description && (
+                  <FormError>{errors.description.message}</FormError>
+                )}
               </div>
               {/* {errors.name && <span>This field is required</span>} */}
               <div>

@@ -19,7 +19,7 @@ export default function omOs() {
             alt="To personer taler ved bord"
             width={1920}
             height={1080}
-            className="md:w-full md:h-full max-h-[380px] object-cover md:max-h-none bg-ibsilver-400"
+            className="md:w-full md:h-full max-h-[340px] object-cover md:max-h-none bg-ibsilver-400"
           />
         </SplitSectionChild>
         <SplitSectionChild>
