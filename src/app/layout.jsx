@@ -31,8 +31,8 @@ export default function RootLayout({ children }) {
           <Header />
           <main>{children}</main>
           <Footer />
+          <SpeedInsights />
         </Suspense>
-        <SpeedInsights />
       </body>
     </html>
   );
