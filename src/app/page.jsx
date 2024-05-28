@@ -50,7 +50,7 @@ export default function Home() {
           <Image
             src="/img/forside-woman-presentation.jpeg"
             alt="kvinde holder præsentation"
-            width={640}
+            width={768}
             height={750}
             className="md:w-full md:h-full max-h-[340px] object-cover md:max-h-none bg-ibsilver-400"
           />
@@ -76,7 +76,7 @@ export default function Home() {
       </SplitSection>
       <SplitSection>
         <SplitSectionChild img className="order-last">
-          <Image src="/img/forside-man-with-coffee.jpeg" alt="mand sidder ved bord" width={640} height={750} className="md:w-full md:h-full max-h-[340px] object-cover md:max-h-none bg-ibsilver-400" />
+          <Image src="/img/forside-man-with-coffee.jpeg" alt="mand sidder ved bord" width={768} height={750} className="md:w-full md:h-full max-h-[340px] object-cover md:max-h-none bg-ibsilver-400" />
         </SplitSectionChild>
         <SplitSectionChild className="md:flex md:flex-col bg-ibsilver-500 text-ibsilver-100">
           <div>
