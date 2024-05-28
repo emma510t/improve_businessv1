@@ -32,8 +32,8 @@ export default function consulting() {
         </SplitSectionChild>
       </SplitSection>
       <section className="md:flex md:min-h-[50vh]">
-        <SplitSectionChild className={"max-md:pb-0 md:bg-ibgreen-400 md:flex md:flex-col md:justify-between px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10"}>
-          <H2>Sådan kommer du i gang</H2>
+        <SplitSectionChild className={"max-md:pb-0 bg-ibsilver-600 md:bg-ibgreen-400 md:flex md:flex-col md:justify-between px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10"}>
+          <H2 className={"max-md:text-ibsilver-100 pb-8"}>Sådan kommer du i gang</H2>
           <Link className="hidden md:block md:mr-auto" href="/kontakt">
             <Button variant="ghost" size="noPadding" hasArrow>
               Kontakt os
@@ -55,7 +55,7 @@ export default function consulting() {
           </div>
           <P className={"text-ibsilver-100"}>VI glæder os til at høre fra dig!</P>
           <Link className="md:hidden" href="/kontakt">
-            <Button className="mr-auto" variant="ghost" size="noPadding" hasArrow>
+            <Button className="mr-auto" variant="ghostWhite" size="noPadding" hasArrow>
               Kontakt os
             </Button>
           </Link>

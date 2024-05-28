@@ -16,7 +16,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-ibgreen-400 text-ibsilver-500 hover:bg-ibgreen-200 group",
         ghost: "bg-transparent group hover:text-ibgreen-200",
-        "ghost-white": "bg-transparent text-ibsilver-100 hover:text-ibgreen-200 group",
+        ghostWhite: "bg-transparent text-ibsilver-100 hover:text-ibgreen-200 group",
       },
       size: {
         default: "text-xl h-10 px-[20px] py-[8px] ",
