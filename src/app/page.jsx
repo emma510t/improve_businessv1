@@ -61,7 +61,7 @@ export default function Home() {
       <SplitSection>
         <SplitSectionChild img>
           <Image
-            src="/img/forside-woman-presentation.webp"
+            src="/img/forside-woman-presentation.jpeg"
             alt="kvinde holder præsentation"
             width={768}
             height={750}
@@ -94,7 +94,7 @@ export default function Home() {
       <SplitSection>
         <SplitSectionChild img className="order-last">
           <Image
-            src="/img/forside-man-with-coffee.webp"
+            src="/img/forside-man-with-coffee.jpeg"
             alt="mand sidder ved bord"
             width={768}
             height={750}
