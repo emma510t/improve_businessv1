@@ -31,10 +31,11 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <Link href="#consultant-areas">
+        <Link href="#consultant-areas" aria-label="Konsulentområder">
           <Button
             hasChevron
             size="xlIcon"
+            aria-label="Konsulentområder"
             className="left-1/2 transform -translate-x-1/2 rounded-full absolute -bottom-7 bg-ibsilver-100 border-2  border-ibsilver-500 hover:bg-ibsilver-100"
           />
         </Link>
