@@ -6,6 +6,7 @@ import Image from "next/image";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -51,6 +52,8 @@ function MainNav({ menuItems }) {
     };
   }, [isOpen]);
 
+  const pathname = usePathname();
+
   return (
     <>
       <NavigationMenu className="w-full flex justify-between bg-ibsilver-500 px-5 py-3 md:px-7 md:py-5">
@@ -60,7 +63,12 @@ function MainNav({ menuItems }) {
         <NavigationMenuList className="hidden my-auto text-4xl md:flex md:flex-row md:gap-7 md:text-lg">
           <NavigationMenuItem>
             <NavigationMenuTrigger>
-              <MenuItem linkref="/consulting">Consulting</MenuItem>
+              <MenuItem
+                linkref="/consulting"
+                className={pathname === "/consulting" ? "text-ibgreen-400" : ""}
+              >
+                Consulting
+              </MenuItem>
             </NavigationMenuTrigger>
             <NavigationMenuContent className=" bg-ibsilver-600 flex justify-center">
               <nav className="flex flex-wrap justify-between gap-4 text-ibsilver-100 px-10 py-11 w-full max-w-[1280px]">
@@ -74,7 +82,14 @@ function MainNav({ menuItems }) {
                     return (
                       <div key={menuItem.icon} className="flex flex-col gap-8">
                         <p className="font-poppins text-lg">
-                          <MenuItem linkref={`/consulting/${menuItem.url}`}>
+                          <MenuItem
+                            linkref={`/consulting/${menuItem.url}`}
+                            className={
+                              pathname === `/consulting/${menuItem.url}`
+                                ? "text-ibgreen-400"
+                                : ""
+                            }
+                          >
                             {menuItem.title}
                           </MenuItem>
                         </p>
@@ -83,6 +98,11 @@ function MainNav({ menuItems }) {
                             <li key={subMenuItem.icon}>
                               <MenuItem
                                 linkref={`/consulting/${subMenuItem.url}`}
+                                className={
+                                  pathname === `/consulting/${subMenuItem.url}`
+                                    ? "text-ibgreen-400"
+                                    : ""
+                                }
                               >
                                 {subMenuItem.title}
                               </MenuItem>
@@ -97,17 +117,32 @@ function MainNav({ menuItems }) {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <MenuItem linkref="/academy">Academy</MenuItem>
+              <MenuItem
+                linkref="/academy"
+                className={pathname === "/academy" ? "text-ibgreen-400" : ""}
+              >
+                Academy
+              </MenuItem>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <MenuItem linkref="/om-os">Om os</MenuItem>
+              <MenuItem
+                linkref="/om-os"
+                className={pathname === "/om-os" ? "text-ibgreen-400" : ""}
+              >
+                Om os
+              </MenuItem>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <MenuItem linkref="/kontakt">Kontakt</MenuItem>
+              <MenuItem
+                linkref="/kontakt"
+                className={pathname === "/kontakt" ? "text-ibgreen-400" : ""}
+              >
+                Kontakt
+              </MenuItem>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
@@ -184,7 +219,9 @@ function MainNav({ menuItems }) {
                       link="/consulting"
                       toggleDrawer={toggleDrawer}
                       setOpenAccordions={setOpenAccordions}
-                      className="p-4 border-t-2 border-b border-ibsilver-400 text-2xl font-semibold"
+                      className={`p-4 border-t-2 border-b border-ibsilver-400 text-2xl font-semibold ${
+                        pathname === `/consulting` ? "text-ibgreen-400" : ""
+                      }`}
                     >
                       Consulting
                     </AccordionTrigger>
@@ -205,7 +242,11 @@ function MainNav({ menuItems }) {
                                 link={`/consulting/${menuItem.url}`}
                                 toggleDrawer={toggleDrawer}
                                 setOpenAccordions={setOpenAccordions}
-                                className="p-2 text-lg"
+                                className={`p-2 text-lg ${
+                                  pathname === "/academy"
+                                    ? "text-ibgreen-400"
+                                    : ""
+                                }`}
                               >
                                 {menuItem.title}
                               </AccordionTrigger>
@@ -222,7 +263,12 @@ function MainNav({ menuItems }) {
                                         <Link
                                           onClick={toggleDrawer}
                                           href={`/consulting/${subItem.url}`}
-                                          className="px-4 py-3 text-base"
+                                          className={`px-4 py-3 text-base ${
+                                            pathname ===
+                                            `/consulting/${subItem.url}`
+                                              ? "text-ibgreen-400"
+                                              : ""
+                                          }`}
                                         >
                                           {subItem.title}
                                         </Link>
@@ -241,7 +287,9 @@ function MainNav({ menuItems }) {
                   <Link
                     onClick={toggleDrawer}
                     href="/academy"
-                    className="p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold"
+                    className={`p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold ${
+                      pathname === `/academy` ? "text-ibgreen-400" : ""
+                    }`}
                   >
                     Academy
                   </Link>
@@ -250,7 +298,9 @@ function MainNav({ menuItems }) {
                   <Link
                     onClick={toggleDrawer}
                     href="/om-os"
-                    className="p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold"
+                    className={`p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold ${
+                      pathname === `/om-os` ? "text-ibgreen-400" : ""
+                    }`}
                   >
                     Om os
                   </Link>
@@ -259,7 +309,9 @@ function MainNav({ menuItems }) {
                   <Link
                     onClick={toggleDrawer}
                     href="/kontakt"
-                    className="p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold"
+                    className={`p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold ${
+                      pathname === `/kontakt` ? "text-ibgreen-400" : ""
+                    }`}
                   >
                     Kontakt
                   </Link>
