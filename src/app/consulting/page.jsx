@@ -17,7 +17,7 @@ export default function consulting() {
       <SplitSection>
         <SplitSectionChild img className="order-last">
           <Image
-            src="/img/consulting-hero.webp"
+            src="/img/consulting-hero.jpg"
             alt="To personer taler ved bord"
             width={1920}
             height={1080}
@@ -117,7 +117,7 @@ export default function consulting() {
       <SplitSection>
         <SplitSectionChild img>
           <Image
-            src="/img/consulting-potentiale.webp"
+            src="/img/consulting-potentiale.jpg"
             alt="To personer taler ved bord"
             width={1920}
             height={1080}
