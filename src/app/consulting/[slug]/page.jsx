@@ -69,6 +69,7 @@ export default async function Page({ params }) {
             width={800}
             height={800}
             className="md:w-full md:h-full max-h-[340px] object-cover md:max-h-none bg-ibsilver-400"
+            priority
           />
         </SplitSectionChild>
         <SplitSectionChild className="bg-ibsilver-600 text-ibsilver-100">

@@ -65,6 +65,7 @@ export default async function page({ params }) {
             alt={`${idData.title} billede`}
             width={800}
             height={800}
+            priority
           />
         </SplitSectionChild>
         <SplitSectionChild>

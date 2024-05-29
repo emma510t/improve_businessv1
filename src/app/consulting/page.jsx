@@ -22,6 +22,7 @@ export default function consulting() {
             width={1920}
             height={1080}
             className="md:w-full md:h-full max-h-[340px] object-cover md:max-h-none bg-ibsilver-400"
+            priority
           />
         </SplitSectionChild>
         <SplitSectionChild className={"bg-ibsilver-100 flex flex-col"}>
