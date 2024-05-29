@@ -64,7 +64,7 @@ export default async function Page({ params }) {
       <SplitSection>
         <SplitSectionChild img>
           <Image
-            src={`/img/${slugData.icon}.webp`}
+            src={`/img/${slugData.icon}.jpg`}
             alt={slugData.title}
             width={800}
             height={800}
