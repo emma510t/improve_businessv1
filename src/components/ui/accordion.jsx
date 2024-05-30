@@ -63,7 +63,7 @@ const AccordionTrigger = React.forwardRef(
             {children}
           </div>
           <ChevronDown
-            className="h-4 w-4 shrink-0 transition-transform duration-200 ml-2 cursor-pointer pointer-events-auto"
+            className="h-4 w-4 shrink-0 transition-transform duration-200 ml-2 cursor-pointer pointer-events-none"
             onClick={handleChevronClick}
           />
         </AccordionPrimitive.Trigger>
