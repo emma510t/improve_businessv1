@@ -1,20 +1,15 @@
 import MainNav from "./main-nav";
+import { supabase } from "../lib/supabaseclient";
 
 async function Header() {
-  const headersList = {
-    apikey:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4eHNpbHlkY3lreHNnZnZmdnZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTY4NTE1MTIsImV4cCI6MjAxMjQyNzUxMn0.XhVtrw5oL-uS_xjTWDhjvePBXTWqN5qrevhCh9XjUSQ",
-  };
+  const { data, error } = await supabase.from("ib-product-cards").select("*");
 
-  const res = await fetch(
-    "https://qxxsilydcykxsgfvfvvz.supabase.co/rest/v1/ib-product-cards",
-    {
-      method: "GET",
-      headers: headersList,
-    }
-  );
+  if (error || !data || data.length === 0) {
+    // Handle the error case (e.g., return a 404 page or a different component)
+    return <div>Error: Data not found</div>;
+  }
 
-  const menuItems = await res.json();
+  const menuItems = data;
 
   return (
     <header className="text-ibsilver-100 font-poppins sticky top-0 z-10 border-b border-ibsilver-400">
