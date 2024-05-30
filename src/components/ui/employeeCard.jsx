@@ -13,7 +13,9 @@ export default function EmployeeCard({ type, company, fullname, title, img }) {
           }}
         >
           <div className="font-inter w-full h-full flex flex-col justify-end py-3 px-5 bg-gradient-to-t from-darkoverlay via-transparent via-transparent to-transparent">
-            <h4 className="font-bold text-ibsilver-100 text-xl">{fullname}</h4>
+            <h3 className="font-bold text-ibsilver-100 text-xl font-inter">
+              {fullname}
+            </h3>
             <p className="text-ibsilver-100 font-medium text-lg opacity-75">
               {title}
             </p>
