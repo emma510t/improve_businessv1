@@ -7,7 +7,7 @@ import Icon from "./icon";
 import Link from "next/link";
 
 const cardVariants = cva(
-  "flex flex-col gap-2 justify-between min-h-44 p-4 sm:p-5 sm:min-h-48 lg:min-h-56",
+  "flex flex-col gap-2 justify-between min-[400px]:min-h-44 p-4 sm:p-5 sm:min-h-48 lg:min-h-56",
   {
     variants: {
       variant: {
@@ -16,7 +16,7 @@ const cardVariants = cva(
         white: "group bg-ibsilver-100 text-ibsilver-500 hover:bg-ibgreen-400",
       },
       size: {
-        default: "w-44 sm:w-48 lg:w-56",
+        default: "w-40 min-[400px]:w-44 sm:w-48 lg:w-56 aspect-square",
         wide: "w-44 sm:w-48 lg:w-72",
       },
     },
@@ -44,7 +44,9 @@ const ProductCard = React.forwardRef(
   ) => {
     const Comp = asChild ? Slot : "div";
     let hasDesc = desc ? true : false;
-    let descStyel = hasDesc ? " sm:aspect-[1/2] lg:aspect-[11/20] h-full" : "";
+    let descStyel = hasDesc
+      ? " aspect-auto sm:aspect-[1/2] lg:aspect-[11/20] h-full"
+      : "";
     return (
       <Link
         href={`/consulting/${url}`}
@@ -55,9 +57,9 @@ const ProductCard = React.forwardRef(
           ref={ref}
           {...props}
         >
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-1 min-[400px]:gap-4">
             <Icon iconVersion={icon} />
-            <h3 className="text-xl font-bold lg:text-2xl font-inter">
+            <h3 className="text-[17px] min-[400px]:text-xl font-bold lg:text-2xl font-inter">
               {heading}
             </h3>
           </div>
