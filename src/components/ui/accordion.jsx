@@ -34,9 +34,6 @@ const AccordionTrigger = React.forwardRef(
         e.stopPropagation(); // Prevent triggering the accordion toggle
         window.location.href = link; // Redirect to the link if it's provided
         toggleDrawer();
-        setOpenAccordions((prevOpenAccordions) =>
-          prevOpenAccordions.filter((item) => item !== value)
-        );
       }
     };
 

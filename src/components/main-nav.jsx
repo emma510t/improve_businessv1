@@ -26,7 +26,9 @@ function MainNav({ menuItems }) {
   const [openAccordions, setOpenAccordions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => {
-    setOpenAccordions([]);
+    if (isOpen) {
+      setOpenAccordions([]);
+    }
     setIsOpen((prevState) => !prevState);
   };
 
@@ -213,7 +215,12 @@ function MainNav({ menuItems }) {
                 </svg>
               </div>
               <div className="flex flex-col mt-12">
-                <Accordion type="multiple" className="w-full">
+                <Accordion
+                  type="multiple"
+                  className="w-full"
+                  value={openAccordions}
+                  onValueChange={setOpenAccordions}
+                >
                   <AccordionItem value="consulting" className="border-none">
                     <AccordionTrigger
                       link="/consulting"
@@ -226,59 +233,61 @@ function MainNav({ menuItems }) {
                       Consulting
                     </AccordionTrigger>
                     <AccordionContent className="p-0 bg-ibsilver-600">
-                      <ul className="flex flex-col text-sm">
-                        {menuItems
-                          .filter(
-                            (menuItem) => menuItem.parent === "consulting"
-                          )
-                          .sort((a, b) => a.id - b.id)
-                          .map((menuItem) => (
-                            <AccordionItem
-                              key={menuItem.icon}
-                              value={menuItem.icon}
-                              className="border-b-0 border-t border-ibsilver-400 p-4"
-                            >
-                              <AccordionTrigger
-                                link={`/consulting/${menuItem.url}`}
-                                toggleDrawer={toggleDrawer}
-                                setOpenAccordions={setOpenAccordions}
-                                className={`p-2 text-lg ${
-                                  pathname === `/consulting/${menuItem.url}`
-                                    ? "text-ibgreen-400"
-                                    : ""
-                                }`}
+                      <Accordion type="single">
+                        <ul className="flex flex-col text-sm">
+                          {menuItems
+                            .filter(
+                              (menuItem) => menuItem.parent === "consulting"
+                            )
+                            .sort((a, b) => a.id - b.id)
+                            .map((menuItem) => (
+                              <AccordionItem
+                                key={menuItem.icon}
+                                value={menuItem.icon}
+                                className="border-b-0 border-t border-ibsilver-400 p-4"
                               >
-                                {menuItem.title}
-                              </AccordionTrigger>
-                              <AccordionContent>
-                                <ul className="flex flex-col text-sm">
-                                  {menuItems
-                                    .filter(
-                                      (subItem) =>
-                                        subItem.parent === menuItem.icon
-                                    )
-                                    .sort((a, b) => a.id - b.id)
-                                    .map((subItem) => (
-                                      <li key={subItem.icon}>
-                                        <Link
-                                          onClick={toggleDrawer}
-                                          href={`/consulting/${subItem.url}`}
-                                          className={`px-4 py-3 text-base ${
-                                            pathname ===
-                                            `/consulting/${subItem.url}`
-                                              ? "text-ibgreen-400"
-                                              : ""
-                                          }`}
-                                        >
-                                          {subItem.title}
-                                        </Link>
-                                      </li>
-                                    ))}
-                                </ul>
-                              </AccordionContent>
-                            </AccordionItem>
-                          ))}
-                      </ul>
+                                <AccordionTrigger
+                                  link={`/consulting/${menuItem.url}`}
+                                  toggleDrawer={toggleDrawer}
+                                  setOpenAccordions={setOpenAccordions}
+                                  className={`p-2 text-lg ${
+                                    pathname === `/consulting/${menuItem.url}`
+                                      ? "text-ibgreen-400"
+                                      : ""
+                                  }`}
+                                >
+                                  {menuItem.title}
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                  <ul className="flex flex-col text-sm">
+                                    {menuItems
+                                      .filter(
+                                        (subItem) =>
+                                          subItem.parent === menuItem.icon
+                                      )
+                                      .sort((a, b) => a.id - b.id)
+                                      .map((subItem) => (
+                                        <li key={subItem.icon}>
+                                          <Link
+                                            onClick={toggleDrawer}
+                                            href={`/consulting/${subItem.url}`}
+                                            className={`px-4 py-3 text-base ${
+                                              pathname ===
+                                              `/consulting/${subItem.url}`
+                                                ? "text-ibgreen-400"
+                                                : ""
+                                            }`}
+                                          >
+                                            {subItem.title}
+                                          </Link>
+                                        </li>
+                                      ))}
+                                  </ul>
+                                </AccordionContent>
+                              </AccordionItem>
+                            ))}
+                        </ul>
+                      </Accordion>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -308,7 +317,7 @@ function MainNav({ menuItems }) {
                 <div className="w-full">
                   <Link
                     onClick={toggleDrawer}
-                    href="/kontakt"
+                    href="#"
                     className={`p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold ${
                       pathname === `/kontakt` ? "text-ibgreen-400" : ""
                     }`}
