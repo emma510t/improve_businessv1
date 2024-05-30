@@ -138,7 +138,7 @@ export default function consulting() {
             forbedre din virksomheds præstationer og resultater.
           </P>
           <Link className="pt-7 mt-auto w-fit h-fit" href="/kontakt">
-            <Button variant="ghost" hasArrow>
+            <Button variant="ghost" hasArrow size="noPadding">
               Kontakt os
             </Button>
           </Link>
