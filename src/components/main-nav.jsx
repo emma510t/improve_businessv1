@@ -158,22 +158,22 @@ function MainNav({ menuItems }) {
             viewBox="0 0 34 28"
             fill="none"
           >
-            <g filter="url(#filter0_d_93_211)">
+            <g>
               <path
                 d="M2 2H31"
-                stroke="#C8C8C8"
+                className="stroke-ibsilver-100"
                 strokeWidth="3"
                 strokeLinecap="round"
               />
               <path
                 d="M2 13H31"
-                stroke="#C8C8C8"
+                className="stroke-ibsilver-100"
                 strokeWidth="3"
                 strokeLinecap="round"
               />
               <path
                 d="M2 24H31"
-                stroke="#C8C8C8"
+                className="stroke-ibsilver-100"
                 strokeWidth="3"
                 strokeLinecap="round"
               />
@@ -200,13 +200,13 @@ function MainNav({ menuItems }) {
                 >
                   <path
                     d="M2.5 26L26.5 2"
-                    stroke="#C8C8C8"
+                    className="stroke-ibsilver-100"
                     strokeWidth="3"
                     strokeLinecap="round"
                   />
                   <path
                     d="M2 2L26 26"
-                    stroke="#C8C8C8"
+                    className="stroke-ibsilver-100"
                     strokeWidth="3"
                     strokeLinecap="round"
                   />
