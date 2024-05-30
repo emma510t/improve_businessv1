@@ -1,5 +1,8 @@
+"use client";
+import React, { useEffect, useRef, useState } from "react";
 import { supabase } from "../lib/supabaseclient";
 import EmployeeCard from "./ui/employeeCard";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -8,18 +11,37 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export default async function AboutCarousel({ type }) {
-  const { data, error } = await supabase
-    .from("ib-medarbejdere")
-    .select("*")
-    .eq("type", type);
+export default function AboutCarousel({ type }) {
+  const [filteredEmployees, setFilteredEmployees] = useState([]);
+  const autoplayPlugin = useRef(null);
 
-  if (error || !data || data.length === 0) {
-    // Handle the error case (e.g., return a 404 page or a different component)
-    return <div>Error: Data not found</div>;
+  useEffect(() => {
+    async function fetchData() {
+      const { data, error } = await supabase
+        .from("ib-medarbejdere")
+        .select("*")
+        .eq("type", type);
+
+      if (error || !data || data.length === 0) {
+        console.error("Error fetching data:", error);
+        return;
+      }
+
+      setFilteredEmployees(data);
+
+      // Initialize Autoplay plugin after data is fetched
+      autoplayPlugin.current = Autoplay({
+        delay: 4000,
+      });
+    }
+
+    fetchData();
+  }, [type]);
+
+  // Render nothing if Autoplay plugin is not initialized yet
+  if (!autoplayPlugin.current) {
+    return null;
   }
-
-  const filteredEmployees = data;
 
   return (
     <>
@@ -29,11 +51,12 @@ export default async function AboutCarousel({ type }) {
           align: "start",
           loop: true,
         }}
+        plugins={[autoplayPlugin.current]}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {filteredEmployees.map((employee) => (
             <CarouselItem
-              className="md:basis-1/2 lg:basis-1/3 pl-2 md:pl-4 "
+              className="md:basis-1/2 lg:basis-1/3 pl-2 md:pl-4"
               key={employee.id}
             >
               <EmployeeCard
@@ -46,7 +69,7 @@ export default async function AboutCarousel({ type }) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-[-10px]  min-[500px]:left-0" />
+        <CarouselPrevious className="left-[-10px] min-[500px]:left-0" />
         <CarouselNext className="right-[-10px] min-[500px]:right-0" />
       </Carousel>
     </>
