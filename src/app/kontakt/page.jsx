@@ -50,7 +50,7 @@ export default function kontakt() {
         </div>
       </div>
 
-      <section className="mt-8 ">
+      <section className="mt-8 mb-12">
         <div className="min-[850px]:flex min-[850px]:gap-12 lg:gap-24 max-w-[1280px] w-full px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto  md:py-8">
           <div>
             <H2>Consulting</H2>

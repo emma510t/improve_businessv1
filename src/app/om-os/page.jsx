@@ -76,10 +76,10 @@ export default function omOs() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="mb-12">
         <div className="max-w-[1280px] px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
           <H3>Udvalgte partnerskaber</H3>
-          <div className="flex flex-wrap gap-16 lg:gap-12 justify-center mt-8 md:py-12 lg:py-16">
+          <div className="flex flex-wrap gap-16 lg:gap-12 justify-center mt-8 md:py-8 lg:py-16">
             <Image
               src="/img/partners/ak_alliancen.svg"
               alt="arbejdskraft alliancen logo"
