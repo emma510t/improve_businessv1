@@ -15,6 +15,7 @@ export default function Footer() {
               <a
                 href="https://www.linkedin.com/company/improvebusinessdk/"
                 target="_blank"
+                aria-label="linkedin profil"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +79,7 @@ export default function Footer() {
               <a
                 href="https://www.instagram.com/improvebusinessacademy/"
                 target="_blank"
+                aria-label="instagram profil"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
