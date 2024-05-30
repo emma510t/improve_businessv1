@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
 import { supabase } from "../lib/supabaseclient";
 import EmployeeCard from "./ui/employeeCard";
+import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
@@ -12,49 +12,56 @@ import {
 } from "@/components/ui/carousel";
 
 export default function AboutCarousel({ type }) {
-  const [filteredEmployees, setFilteredEmployees] = useState([]);
-  const autoplayPlugin = useRef(null);
+  const plugin = React.useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: true })
+  );
+  const [employees, setEmployees] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     async function fetchData() {
-      const { data, error } = await supabase
-        .from("ib-medarbejdere")
-        .select("*")
-        .eq("type", type);
+      try {
+        const { data, error } = await supabase
+          .from("ib-medarbejdere")
+          .select("*")
+          .eq("type", type);
 
-      if (error || !data || data.length === 0) {
-        console.error("Error fetching data:", error);
-        return;
+        if (error) throw error;
+
+        setEmployees(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
-
-      setFilteredEmployees(data);
-
-      // Initialize Autoplay plugin after data is fetched
-      autoplayPlugin.current = Autoplay({
-        delay: 4000,
-      });
     }
 
     fetchData();
   }, [type]);
 
-  // Render nothing if Autoplay plugin is not initialized yet
-  if (!autoplayPlugin.current) {
-    return null;
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error || !employees || employees.length === 0) {
+    return <div>Error: Data not found</div>;
   }
 
   return (
     <>
       <Carousel
         className="relative mx-auto xl:max-w-[1280px] px-2.5 md:px-3.5 lg:px-8"
+        plugins={[plugin.current]}
+        onMouseEnter={plugin.current.stop}
+        onMouseLeave={plugin.current.reset}
         opts={{
           align: "start",
           loop: true,
         }}
-        plugins={[autoplayPlugin.current]}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
-          {filteredEmployees.map((employee) => (
+          {employees.map((employee) => (
             <CarouselItem
               className="md:basis-1/2 lg:basis-1/3 pl-2 md:pl-4"
               key={employee.id}
@@ -69,7 +76,7 @@ export default function AboutCarousel({ type }) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-[-10px] min-[500px]:left-0" />
+        <CarouselPrevious className="left-[-10px]  min-[500px]:left-0" />
         <CarouselNext className="right-[-10px] min-[500px]:right-0" />
       </Carousel>
     </>
