@@ -1,5 +1,6 @@
 import { supabase } from "../lib/supabaseclient";
 import EmployeeCard from "./ui/employeeCard";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -29,6 +30,11 @@ export default async function AboutCarousel({ type }) {
           align: "start",
           loop: true,
         }}
+        plugins={[
+          Autoplay({
+            delay: 2000,
+          }),
+        ]}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {filteredEmployees.map((employee) => (
