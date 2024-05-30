@@ -10,13 +10,18 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <section
-        className="h-[60vh] md:h-[75vh] bg-cover bg-center bg-herooverlay relative"
-        style={{
-          backgroundImage: `url(/img/forside-hero.webp)`,
-        }}
-      >
-        <div className="h-full w-full bg-herooverlay flex items-center">
+      <section className="h-[60vh] md:h-[75vh] relative">
+        <div className="absolute top-0 bottom-0 left-0 right-0 z-[-1]">
+          <Image
+            src="/img/forside-hero.jpeg"
+            height={4096}
+            width={2681}
+            alt="Forside billede af to konsulenter i et kontor"
+            className="object-cover object-center h-full w-full"
+            priority
+          />
+        </div>
+        <div className="h-full w-full bg-herooverlay flex items-center z-10">
           <div className="max-w-[1280px] w-full px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
             <H1 className="text-ibsilver-100 max-w-[900px] sm:text-[40px] md:text-[50px] lg:text-[60px]">
               Bæredygtig fremgang gennem innovativ udvikling
