@@ -57,7 +57,9 @@ const ProductCard = React.forwardRef(
         >
           <div className="flex flex-col gap-4">
             <Icon iconVersion={icon} />
-            <h4 className="text-xl font-bold lg:text-2xl">{heading}</h4>
+            <h3 className="text-xl font-bold lg:text-2xl font-inter">
+              {heading}
+            </h3>
           </div>
           <div
             className={`flex flex-col lg:gap-5 justify-between ${
