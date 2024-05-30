@@ -243,7 +243,7 @@ function MainNav({ menuItems }) {
                                 toggleDrawer={toggleDrawer}
                                 setOpenAccordions={setOpenAccordions}
                                 className={`p-2 text-lg ${
-                                  pathname === "/academy"
+                                  pathname === `/consulting/${menuItem.url}`
                                     ? "text-ibgreen-400"
                                     : ""
                                 }`}

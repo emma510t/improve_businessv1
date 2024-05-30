@@ -2,7 +2,6 @@
 import * as React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -19,7 +18,15 @@ AccordionItem.displayName = "AccordionItem";
 
 const AccordionTrigger = React.forwardRef(
   (
-    { className, toggleDrawer, setOpenAccordions, children, link, ...props },
+    {
+      className,
+      toggleDrawer,
+      setOpenAccordions,
+      children,
+      link,
+      value,
+      ...props
+    },
     ref
   ) => {
     const handleTextClick = (e) => {
@@ -27,7 +34,9 @@ const AccordionTrigger = React.forwardRef(
         e.stopPropagation(); // Prevent triggering the accordion toggle
         window.location.href = link; // Redirect to the link if it's provided
         toggleDrawer();
-        setOpenAccordions([]);
+        setOpenAccordions((prevOpenAccordions) =>
+          prevOpenAccordions.filter((item) => item !== value)
+        );
       }
     };
 
@@ -54,7 +63,7 @@ const AccordionTrigger = React.forwardRef(
             {children}
           </div>
           <ChevronDown
-            className="h-4 w-4 shrink-0 transition-transform duration-200 ml-2 cursor-pointer pointer-events-none	"
+            className="h-4 w-4 shrink-0 transition-transform duration-200 ml-2 cursor-pointer pointer-events-auto"
             onClick={handleChevronClick}
           />
         </AccordionPrimitive.Trigger>
@@ -69,7 +78,12 @@ const AccordionContent = React.forwardRef(
   ({ className, children, ...props }, ref) => (
     <AccordionPrimitive.Content
       ref={ref}
-      className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+      className={cn(
+        "overflow-hidden text-sm transition-all",
+        "data-[state=closed]:animate-accordion-up",
+        "data-[state=open]:animate-accordion-down",
+        className
+      )}
       {...props}
     >
       <div className={cn("pb-4 pt-0", className)}>{children}</div>
