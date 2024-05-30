@@ -128,7 +128,9 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex flex-col gap-7 md:gap-8">
-          <h5 className="text-xl font-semibold">Kontaktinformationer</h5>
+          <p className="text-xl font-semibold font-poppins">
+            Kontaktinformationer
+          </p>
           <div>
             <p className="text-lg">Improve Business ApS</p>
             <p className="text-lg">CVR: 43326147</p>
@@ -142,7 +144,7 @@ export default function Footer() {
           <p className="text-lg"></p>
         </div>
         <div className="flex flex-col gap-7 md:gap-8">
-          <h5 className="text-xl font-semibold">Genveje</h5>
+          <p className="text-xl font-semibold font-poppins">Genveje</p>
           <ul className="flex flex-col gap-3">
             <li>
               <Link href="/">Hjem</Link>
@@ -162,7 +164,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="flex flex-col gap-7 md:gap-8">
-          <h5 className="text-xl font-semibold">Lokation</h5>
+          <p className="text-xl font-semibold font-poppins">Lokation</p>
           <div>
             <p className="text-lg">The Union</p>
             <p className="text-lg">Lautrupsgade 13</p>
