@@ -317,7 +317,7 @@ function MainNav({ menuItems }) {
                 <div className="w-full">
                   <Link
                     onClick={toggleDrawer}
-                    href="/kontakt"
+                    href="#"
                     className={`p-4 hover:underline border-t-2 border-ibsilver-400 text-2xl font-semibold ${
                       pathname === `/kontakt` ? "text-ibgreen-400" : ""
                     }`}
