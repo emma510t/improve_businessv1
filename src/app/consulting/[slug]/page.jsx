@@ -69,7 +69,8 @@ export default async function Page({ params }) {
       <section>
         <div className="pb-8 md:pb-12 pt-[25px] md:pt-[40px] max-w-[1280px] w-full px-2.5 sm:px-4 md:px-6 lg:px-8 xl:px-10 mx-auto">
           <H2 className="">
-            Vores <span className="lowercase">{slugData.title}</span>sydelser
+            Vores <span className="lowercase">{slugData.title}</span>s<wbr />
+            ydelser
           </H2>
           <ProductCardSection parentCategory={slugData.icon} />
         </div>
